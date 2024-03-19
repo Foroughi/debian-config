@@ -21,3 +21,7 @@ opt.swapfile = false
 
 vim.api.nvim_set_option("clipboard", "unnamed")
 
+
+opt.wrap = true
+
+
