@@ -47,14 +47,7 @@ local setup_tools = function()
               col_offset = -3,
               side_padding = 0,
             },
-          },
-        formatting = {
-            fields = { "kind", "abbr" },
-            format = function(_, vim_item)
-              vim_item.kind = cmp_kinds[vim_item.kind] or ""
-              return vim_item
-            end,
-          },
+          }       
     }
 
     vim.api.nvim_create_autocmd('LspAttach', {
