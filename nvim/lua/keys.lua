@@ -19,6 +19,16 @@ vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Down>', '<Nop>', opts)
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Left>', '<Nop>', opts)
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Right>', '<Nop>', opts)
 
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<c-Up>', '<Nop>', opts)
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<c-Down>', '<Nop>', opts)
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<c-Left>', '<Nop>', opts)
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<c-Right>', '<Nop>', opts)
+
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Up>', '<Nop>', opts)
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Down>', '<Nop>', opts)
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Left>', '<Nop>', opts)
+vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Right>', '<Nop>', opts)
+
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<PageUp>', '<Nop>', opts)
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<PageDown>', '<Nop>', opts)
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<c-PageUp>', '<Nop>', opts)
