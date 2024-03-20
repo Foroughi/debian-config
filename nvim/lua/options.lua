@@ -20,8 +20,8 @@ opt.termguicolors = true
 opt.swapfile = false
 
 vim.api.nvim_set_option("clipboard", "unnamed")
+opt.mouse = ""
 
-
-opt.wrap = true
+opt.wrap = false
 
 
