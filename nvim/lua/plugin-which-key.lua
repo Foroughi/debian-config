@@ -47,6 +47,7 @@ return {
                 f = { "<cmd>Telescope find_files<cr>", "Find a file in current directory" },
                 b = { "<cmd>Telescope buffers<cr>", "List of opened windows" },
                 g = { "<cmd>Telescope live_grep<cr>", "Find in files" },
+                d = { "<cmd>Telescope diagnostics<cr>", "View LSP diagnostics" },
                 h = { "<cmd>Telescope help_tags<cr>", "Help" }
             },
             w = {
