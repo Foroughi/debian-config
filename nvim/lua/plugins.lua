@@ -24,6 +24,7 @@ local plugins = {
 
     -- LSP
     require("plugin-lsp"),
+    require("plugin-treesitter"),
     --require("plugin-trouble"),
     
     
