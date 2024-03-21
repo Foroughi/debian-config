@@ -2,8 +2,8 @@ return {
 
     config = {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPost",
-        --main = "ibl",
+        --event = "BufReadPost",
+        main = "ibl",
         opts = {}
     },
     setup = function()
@@ -16,8 +16,8 @@ return {
             show_current_context = true,
             show_current_context_start = false,
             show_trailing_blankline_indent = false,
-            use_treesitter = true,
-            use_treesitter_scope = true
+            --use_treesitter = true,
+            --use_treesitter_scope = true
             -- context_patterns = {
             --     'class', 'func', 'method', '.*_statement', 'table'
             -- }
