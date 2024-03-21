@@ -16,7 +16,7 @@ return {
                 },
               },
               popupmenu = {
-                --relative = "editor",
+                relative = "editor",
                 position = {
                   row = 8,
                   col = "50%",
@@ -27,7 +27,7 @@ return {
                 },
                 border = {
                   style = "rounded",
-                  padding = { 0, 1 },
+                  padding = { 5, 5 },
                 },
                 win_options = {
                   winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
