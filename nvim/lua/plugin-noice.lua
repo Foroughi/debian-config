@@ -50,10 +50,10 @@ return {
           row = 10,
           col = "50%",
         },
-        border = {
-          style = "none",
-          padding = { 2, 3 },
-        },
+        --border = {
+          --style = "none",
+          --padding = { 2, 3 },
+        --},
         size = {
           min_width = 60,
           width = "auto",
