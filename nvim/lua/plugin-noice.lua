@@ -11,12 +11,12 @@ return {
                   col = "50%",
                 },
                 size = {
-                  width = 160,
+                  width = 60,
                   height = "auto",
                 },
               },
               popupmenu = {
-                relative = "editor",
+                --relative = "editor",
                 position = {
                   row = 8,
                   col = "50%",
