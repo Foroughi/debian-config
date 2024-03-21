@@ -49,10 +49,10 @@ return {
               relative = "editor",
               position = {
                 row = 8,
-                col = "50%",
+                col = "150%",
               },
               size = {
-                width = 60,
+                width = 160,
                 height = 10,
               },
               border = {
