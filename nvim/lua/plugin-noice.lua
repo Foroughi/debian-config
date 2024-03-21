@@ -33,7 +33,7 @@ return {
                   height = "auto",
                 },
               },
-              popupmenu = {
+              popup = {
                 relative = "editor",
                 position = {
                   row = "60%",
