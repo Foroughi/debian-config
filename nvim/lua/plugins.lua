@@ -4,23 +4,23 @@ local plugins = {
 
     --Thems
     require("plugin-noice"),
-    require("plugin-theme"),
+    --require("plugin-theme"),
     --require("plugin-dressing"),
     --require("plugin-catppuccin"),
 
     --Editor
-    require("plugin-gitsign"),
-    require("plugin-bufferline"),
-    require("plugin-indent"),
+    --require("plugin-gitsign"),
+    --require("plugin-bufferline"),
+    --require("plugin-indent"),
 
     --Tools
     --require("plugin-notify"),
-    require("plugin-lualine"),
-    require("plugin-telescope"),
+    --require("plugin-lualine"),
+    --require("plugin-telescope"),
     --require("plugin-dev-container"),
-    require("plugin-which-key"),
+    --require("plugin-which-key"),
     --require("plugin-terminal"),
-    require("plugin-mason"),
+    --require("plugin-mason"),
 
     -- LSP
     --require("plugin-lsp"),
