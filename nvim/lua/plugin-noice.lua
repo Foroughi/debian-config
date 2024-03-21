@@ -66,7 +66,7 @@ return {
       cmdline_popupmenu = {
         relative = "editor",
         position = {
-          row = 11,
+          row = 14,
           col = "50%",
         },
         size = {
