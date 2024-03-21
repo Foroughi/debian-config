@@ -33,6 +33,36 @@ return {
                 inc_rename = false,         -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = false,     -- add a border to hover docs and signature help
             },
+            cmdline_popup = {
+              position = {
+                row = 5,
+                col = "50%",
+              },
+              size = {
+                width = 60,
+                height = "auto",
+              },
+            },
+            popupmenu = {
+              enabled = true, -- enables the Noice popupmenu UI
+              backend = "cmp", -- backend to use to show regular cmdline completions
+              relative = "editor",
+              position = {
+                row = 8,
+                col = "50%",
+              },
+              size = {
+                width = 60,
+                height = 10,
+              },
+              border = {
+                style = "rounded",
+                padding = { 0, 1 },
+              },
+              win_options = {
+                winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+              },
+            },
         })
     end
 
