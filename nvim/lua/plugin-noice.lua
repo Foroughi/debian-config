@@ -4,7 +4,18 @@ return {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
-            -- add any options here
+           views = {
+                  cmdline_popup = {
+                    border = {
+                      style = "none",
+                      padding = { 2, 3 },
+                    },
+                    filter_options = {},
+                    win_options = {
+                      winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                    },
+                  },
+                }
         },
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -18,18 +29,7 @@ return {
     setup = function()
         require("noice").setup({
 
-                views = {
-                  cmdline_popup = {
-                    border = {
-                      style = "none",
-                      padding = { 2, 3 },
-                    },
-                    filter_options = {},
-                    win_options = {
-                      winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-                    },
-                  },
-                }
+                
            
         })
     end
