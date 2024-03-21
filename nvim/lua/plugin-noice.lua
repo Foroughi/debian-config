@@ -24,18 +24,7 @@ return {
                     ["vim.lsp.util.stylize_markdown"] = true,
                     ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
                 },
-            },
-          
-            cmdline_popup = {
-              position = {
-                row = 0,
-                col = "60%",
-              },
-              size = {
-                width = 160,
-                height = "auto",
-              },
-            },
+            },       
             views = {
               cmdline_popup = {
                 border = {
@@ -50,10 +39,7 @@ return {
                     width = 160,
                     height = 10,
                   },
-                filter_options = {},
-                win_options = {
-                  winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-                },
+                filter_options = {}                
               },
             },
            
