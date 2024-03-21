@@ -23,8 +23,8 @@ local plugins = {
     require("plugin-mason"),
 
     -- LSP
-    require("plugin-lsp"),
-    require("plugin-treesitter"),
+    --require("plugin-lsp"),
+    --require("plugin-treesitter"),
     --require("plugin-trouble"),
     
     
