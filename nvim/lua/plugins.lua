@@ -4,7 +4,7 @@ local plugins = {
 
     --Thems
     require("plugin-noice"),
-    --require("plugin-theme"),
+    require("plugin-theme"),
     --require("plugin-dressing"),
     --require("plugin-catppuccin"),
 
@@ -14,7 +14,7 @@ local plugins = {
     --require("plugin-indent"),
 
     --Tools
-    --require("plugin-notify"),
+    require("plugin-notify"),
     --require("plugin-lualine"),
     --require("plugin-telescope"),
     --require("plugin-dev-container"),
