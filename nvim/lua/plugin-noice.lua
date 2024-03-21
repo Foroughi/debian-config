@@ -74,10 +74,10 @@ return {
           height = "auto",
           max_height = 15,
         },
-        border = {
-          style = "none",
-          padding = { 0, 3 },
-        },
+        --border = {
+          --style = "none",
+          --padding = { 0, 3 },
+        --},
         win_options = {
           winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "NoiceCmdlinePopupBorder" },
         },
