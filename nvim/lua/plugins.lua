@@ -4,7 +4,7 @@ local plugins = {
 
     --Thems
     require("plugin-noice"),
-    --require("plugin-theme"),
+    require("plugin-theme"),
     --require("plugin-dressing"),
     --require("plugin-catppuccin"),
 
