@@ -43,6 +43,18 @@ return {
                 height = "auto",
               },
             },
+            views = {
+              cmdline_popup = {
+                border = {
+                  style = "none",
+                  padding = { 2, 3 },
+                },
+                filter_options = {},
+                win_options = {
+                  winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                },
+              },
+            },
             popupmenu = {
               enabled = true, -- enables the Noice popupmenu UI
               --backend = "cmp", -- backend to use to show regular cmdline completions
