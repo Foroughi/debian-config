@@ -66,7 +66,7 @@ return {
       cmdline_popupmenu = {
         relative = "editor",
         position = {
-          row = 13,
+          row = 11,
           col = "50%",
         },
         size = {
@@ -79,7 +79,7 @@ return {
           --padding = { 0, 3 },
         --},
         win_options = {
-          winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "NoiceCmdlinePopupBorder" },
+          winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "FloatBorder" },
         },
       },
       hover = {
