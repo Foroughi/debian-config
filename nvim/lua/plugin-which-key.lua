@@ -48,7 +48,8 @@ return {
         local wk = require("which-key")
 
         wk.register({      
-                             
+            e = "Floating diagnostic win", 
+            q = "Diagnostics list", 
             f = {
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find a file in current directory" },
@@ -93,6 +94,12 @@ return {
                 l = { "<cmd>tabnext<cr>", "Move to next tab" },
                 --["<pageup>"] = { "<cmd>tabfirst<cr>", "Move to first tab" },
                 --["<pagedown>"] = { "<cmd>tablast<cr>", "Move to last tab" },
+            },
+            ["["] : {
+                d = "Previous diagnostic"
+            },
+            ["]"] : {
+                d = "Next diagnostic"
             },
         }, { prefix = "<leader>" })
     end
