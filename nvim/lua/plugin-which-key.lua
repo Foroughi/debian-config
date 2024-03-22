@@ -46,7 +46,7 @@ return {
             v = "Paste",
             x = "Cut",
             X = "Cut line",         
-            gg = "Begining of the file",    
+            ["gg"] = "Begining of the file",    
             G = "End of the file",
             ["0"] = "Home",
             ["$"] = "End",
