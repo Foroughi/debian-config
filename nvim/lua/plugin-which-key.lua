@@ -49,7 +49,7 @@ return {
             gg = "Begining of the file",    
             G = "End of the file",
             ["0"] = "Home",
-            ["$"] = "End,
+            ["$"] = "End",
             ["c-b"] = "Page up",
             ["c-n"] = "Page down",            
             f = {
