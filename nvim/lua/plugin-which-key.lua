@@ -50,8 +50,8 @@ return {
             G = "End of the file",
             ["0"] = "Home",
             ["$"] = "End",
-            ["c-b"] = "Page up",
-            ["c-n"] = "Page down",            
+            ["<c-b>"] = "Page up",
+            ["<c-n>"] = "Page down",            
             f = {
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find a file in current directory" },
