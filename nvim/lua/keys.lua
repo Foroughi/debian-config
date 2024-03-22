@@ -1,6 +1,13 @@
 vim.g.mapleader = ' '
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set({'c' , 'i'}, '<j>', '<Down>', opts)
+vim.keymap.set({'c' , 'i'}, '<k>', '<Up>', opts)
+vim.keymap.set({'c' , 'i'}, '<l>', '<Right>', opts)
+vim.keymap.set({'c' , 'i'}, '<h>', '<Left>', opts)
+
+
+
 -- to get used to vim key layout
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Up>', '<Nop>', opts)
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Down>', '<Nop>', opts)
