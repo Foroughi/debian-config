@@ -75,8 +75,8 @@ return {
           max_height = 15,
         },
         border = {
-          style = "single",
-          padding = { 0, 3 },
+          style = "round",
+          --padding = { 0, 3 },
         },
         win_options = {
           winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "FloatBorder" },
