@@ -72,6 +72,13 @@ local setup_tools = function()
             vim.keymap.set('n', '<space>wl', function()
               print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
             end, opts)
+            vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+            vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+            vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+            vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
           
             vim.api.nvim_create_autocmd('BufWritePre', {
 
