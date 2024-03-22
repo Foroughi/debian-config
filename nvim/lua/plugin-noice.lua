@@ -55,8 +55,8 @@ return {
           --padding = { 2, 3 },
         --},
         size = {
-          min_width = 60,
-          width = "auto",
+          --min_width = 60,
+          width = 60,
           height = "auto",
         },
         win_options = {
@@ -66,7 +66,7 @@ return {
       cmdline_popupmenu = {
         relative = "editor",
         position = {
-          row = 14,
+          row = 11,
           col = "50%",
         },
         size = {
