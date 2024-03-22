@@ -47,9 +47,7 @@ return {
     setup = function()
         local wk = require("which-key")
 
-        wk.register({      
-            e = "Floating diagnostic win", 
-            q = "Diagnostics list", 
+        wk.register({               
             f = {
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find a file in current directory" },
@@ -95,13 +93,27 @@ return {
                 --["<pageup>"] = { "<cmd>tabfirst<cr>", "Move to first tab" },
                 --["<pagedown>"] = { "<cmd>tablast<cr>", "Move to last tab" },
             },
-            ["["] = {
-                d = "Previous diagnostic"
-            },
-            ["]"] = {
-                d = "Next diagnostic"
-            },
+            d = {
+                    D = "View declaration",
+                    d = "View definition",
+                    h = "Hover",
+                    i = "Go to implementation",                    
+                    w = {
+                        a = "Add workspace folder",
+                        r = "Remove workspace folder",
+                        l = "List workspace folders"
+                    },
+                    r = "Rename",
+                    R = "Refrences",
+                    e = "Floating diagnostics win",
+                    ["["] = "Prevoius diagnostic error",
+                    ["]"] = "Next diagnostic error",
+                    q = "Diagnostic error list"
+                    
+            }
+           
         }, { prefix = "<leader>" })
     end
 
 }
+
