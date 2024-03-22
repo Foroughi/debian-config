@@ -41,11 +41,7 @@ return {
         local wk = require("which-key")
 
         wk.register({      
-            c = "Copy",
-            C = "Copy line",
-            v = "Paste",
-            x = "Cut",
-            X = "Cut line",                   
+                             
             f = {
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find a file in current directory" },
