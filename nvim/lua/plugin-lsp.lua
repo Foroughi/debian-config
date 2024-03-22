@@ -60,6 +60,19 @@ local setup_tools = function()
             if not client.server_capabilities.documentFormattingProvider then
                 return
             end
+
+            local opts = { buffer = bufnr, noremap = true, silent = true }
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+            vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+            vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+            vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+            vim.keymap.set('n', '<space>wl', function()
+              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end, opts)
+          
             vim.api.nvim_create_autocmd('BufWritePre', {
 
                 buffer = bufnr,
