@@ -47,7 +47,8 @@ return {
     setup = function()
         local wk = require("which-key")
 
-        wk.register({               
+        wk.register({      
+            
             f = {
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find a file in current directory" },
