@@ -34,6 +34,13 @@ return {
                 align = "center",                 -- align columns left, center or right
             },
             ignore_missing = false,
+            triggers_blacklist = {
+                -- list of mode / prefixes that should never be hooked by WhichKey
+                -- this is mostly relevant for keymaps that start with a native binding
+                i = { "j", "k" },
+                v = { "j", "k" },
+                n = {"v"}
+            },
 
         }
     },
