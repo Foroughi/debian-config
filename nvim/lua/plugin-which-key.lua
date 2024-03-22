@@ -95,10 +95,10 @@ return {
                 --["<pageup>"] = { "<cmd>tabfirst<cr>", "Move to first tab" },
                 --["<pagedown>"] = { "<cmd>tablast<cr>", "Move to last tab" },
             },
-            ["<[>"] : {
+            ["["] = {
                 d = "Previous diagnostic"
             },
-            ["<]>"] : {
+            ["]"] = {
                 d = "Next diagnostic"
             },
         }, { prefix = "<leader>" })
