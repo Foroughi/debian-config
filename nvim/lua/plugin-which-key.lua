@@ -94,6 +94,7 @@ return {
                 --["<pagedown>"] = { "<cmd>tablast<cr>", "Move to last tab" },
             },
             d = {
+                    name = "Diagnostics",
                     D = "View declaration",
                     d = "View definition",
                     h = "Hover",
