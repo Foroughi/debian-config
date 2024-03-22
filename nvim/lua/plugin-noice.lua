@@ -41,6 +41,12 @@ return {
                   width = 60,
                   height = "auto",
                 },
+                border = {
+                    text = {
+                      top = "Search",
+                      top_align = "center",
+                    },
+                },
                 win_options = {
                   winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "FloatBorder" },
                 },
@@ -57,8 +63,7 @@ return {
                   max_height = 20,
                 },
                 border = {
-                  style = "rounded",
-                  --padding = { 0, 3 },
+                    style = "rounded",                                      
                 },
                 win_options = {
                   winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "FloatBorder" },
