@@ -18,7 +18,7 @@ local plugins = {
     require("plugin-lualine"),
     require("plugin-telescope"),
     --require("plugin-dev-container"),
-    require("plugin-which-key"),
+    --require("plugin-which-key"),
     --require("plugin-terminal"),
     require("plugin-mason"),
 
