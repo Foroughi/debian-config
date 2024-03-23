@@ -21,6 +21,7 @@ local plugins = {
     require("plugin-which-key"),
     --require("plugin-terminal"),
     require("plugin-mason"),
+    require("plugin-tasks"),
 
     -- LSP
     require("plugin-lsp"),
