@@ -17,22 +17,18 @@ return {
         telescope.setup({
             pickers = {
                 live_grep = {
-                    file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+                    file_ignore_patterns = { 'node_modules', '.git', '.venv' , '.nvim'},
                     additional_args = function(_)
                         return { "--hidden" }
                     end
                 },
                 find_files = {
-                    file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+                    file_ignore_patterns = { 'node_modules', '.git', '.venv' , '.nvim'},
                     hidden = true
                 }
 
-            },
-            extensions = {
-                "fzf"
-            },
-        })
-        telescope.load_extension("fzf")
+            }           
+        })    
 
         local actions = require("telescope.actions")
         local builtin = require('telescope.builtin')               
