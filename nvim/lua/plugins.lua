@@ -24,8 +24,8 @@ local plugins = {
     --require("plugin-tasks"),
 
     -- LSP
-    --require("plugin-lsp"),
-    --require("plugin-treesitter"),
+    require("plugin-lsp"),
+    require("plugin-treesitter"),
     --require("plugin-trouble"),
     
     
@@ -60,8 +60,12 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+local opts = {
+    root = vim.fn.getcwd() .. "/.nvim/plugins",
+    lockfile = vim.fn.getcwd() .. "/.nvim/lazy-lock.json"
+}
 
-require("lazy").setup(getPlugins())
+require("lazy").setup(getPlugins() , opts)
 
 for  _, plugin in ipairs(plugins)  do
 
