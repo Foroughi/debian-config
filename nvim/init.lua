@@ -14,10 +14,11 @@ function exists(file)
    return ok, err
 end
 
-local localNvimExits , err = exists(vim.fn.getcwd() .. "/.nvim/local-init.lua")
+
 
 if localNvimExits then
 
+         local localNvimExits , err = exists(vim.fn.getcwd() .. "/.nvim/local-init.lua")
         local oldpath = package.path;
 
         package.path = vim.fn.getcwd() .. "/.nvim/?.lua;" .. oldpath;
