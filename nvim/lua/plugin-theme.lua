@@ -42,9 +42,8 @@ return {
             ---@param colors ColorScheme
             on_highlights = function(hl, c) 
     
-                hl.TelescopeNormal = {
-                  bg = c.bg_dark,
-                  fg = c.fg_dark,
+                hl.TelescopeBorder = {
+                
                 }
                                
             end,
