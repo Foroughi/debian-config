@@ -1,10 +1,10 @@
 vim.g.mapleader = ' '
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set({'c' , 'i'}, '<j>', '<Down>', opts)
-vim.keymap.set({'c' , 'i'}, '<k>', '<Up>', opts)
-vim.keymap.set({'c' , 'i'}, '<l>', '<Right>', opts)
-vim.keymap.set({'c' , 'i'}, '<h>', '<Left>', opts)
+vim.keymap.set({'c' , 'i'}, '<C-j>', '<Down>', opts)
+vim.keymap.set({'c' , 'i'}, '<C-k>', '<Up>', opts)
+vim.keymap.set({'c' , 'i'}, '<C-l>', '<Right>', opts)
+vim.keymap.set({'c' , 'i'}, '<C-h>', '<Left>', opts)
 
 
 
