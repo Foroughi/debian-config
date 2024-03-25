@@ -55,7 +55,8 @@ return {
                 b = { "<cmd>Telescope buffers<cr>", "List of opened windows" },
                 g = { "<cmd>Telescope live_grep<cr>", "Find in files" },
                 d = { "<cmd>Telescope diagnostics<cr>", "View LSP diagnostics" },
-                h = { "<cmd>Telescope help_tags<cr>", "Help" }
+                h = { "<cmd>Telescope help_tags<cr>", "Help" },
+                t = { "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>" , "Show file tree"}
             },
             w = {
                 name = "Window navigation",
