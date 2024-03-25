@@ -12,7 +12,7 @@ return {
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
             mappings = {
-              ["i"] = {                  
+              ["n"] = {                  
                   ["<C-c>"] = fb_actions.create_from_prompt,
                   ["<C-r>"] = fb_actions.rename,
                   ["<C-x>"] = fb_actions.move,
