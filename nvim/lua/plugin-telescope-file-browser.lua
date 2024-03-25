@@ -16,7 +16,7 @@ return {
                 -- your custom insert mode mappings
               },
               ["n"] = {
-                ["<C-h>"] = fb_actions.goto_home_dir
+                --["<C-h>"] = fb_actions.goto_home_dir
               },
             },
           },
