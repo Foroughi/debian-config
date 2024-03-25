@@ -22,6 +22,7 @@ local plugins = {
     --require("plugin-terminal"),
     require("plugin-mason"),
     --require("plugin-tasks"),
+    require("plugin-telescope-file-browser"),
 
     -- LSP
     require("plugin-lsp"),
