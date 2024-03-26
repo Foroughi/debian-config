@@ -12,6 +12,7 @@ return {
             --theme = "ivy",
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
+            initial_mode="normal",
             mappings = {
               ["n"] = {                  
                   ["<C-c>"] = fb_actions.create_from_prompt,
