@@ -17,12 +17,14 @@ return {
         telescope.setup({
             pickers = {
                 live_grep = {
+                    initial_mode="normal",
                     file_ignore_patterns = { 'node_modules', '.git', '.venv' , '.nvim'},
                     additional_args = function(_)
                         return { "--hidden" }
                     end
                 },
                 find_files = {
+                    initial_mode="normal",
                     file_ignore_patterns = { 'node_modules', '.git', '.venv' , '.nvim'},
                     hidden = true
                 }
