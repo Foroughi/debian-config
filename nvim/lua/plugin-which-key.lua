@@ -95,7 +95,7 @@ return {
                 --["<pageup>"] = { "<cmd>tabfirst<cr>", "Move to first tab" },
                 --["<pagedown>"] = { "<cmd>tablast<cr>", "Move to last tab" },
             },
-            d = {
+            m = {
                     name = "Diagnostics",
                     D = "View declaration",
                     d = "View definition",
