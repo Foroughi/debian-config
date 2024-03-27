@@ -1,4 +1,4 @@
-local cmp_kinds = {
+local kind_icons = {
   Text = '  ',
   Method = '  ',
   Function = '  ',
@@ -40,23 +40,27 @@ local setup_tools = function()
 
     cmp.setup {
         sources = {
-          {name = 'path'},
+        
           {name = 'nvim_lsp', keyword_length = 1},
           {name = 'buffer', keyword_length = 3},
-          {name = 'luasnip', keyword_length = 2},
+          
         },
         snippet = {
             expand = function(args)
               luasnip.lsp_expand(args.body)
             end
         },
-        formatting = {
-            fields = {'menu', 'abbr', 'kind'},
-            format = function(entry, item)
-              item.menu = cmp_kinds[entry.source.name]
-              return item
-            end,
-        },
+       
+		formatting = {
+			fields = {'kind' , 'abbr' ,'menu'},
+			format = function(entry, vim_item)
+			 
+				vim_item.kind = string.format(' %s', kind_icons[vim_item.kind])
+
+				return vim_item
+			 
+			end
+		},
        mapping = cmp.mapping.preset.insert({
             --['<C-Space>'] = cmp.mapping.complete(),
            ['<CR>'] = cmp.mapping.confirm({select= true}),
@@ -85,10 +89,14 @@ local setup_tools = function()
 
         window = {
 
-            documentation = cmp.config.window.bordered(),
+            documentation = {
+              winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+              col_offset = 0,			  
+              side_padding = 0,
+            },
             completion = {
               winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-              col_offset = -3,
+              col_offset = 0,
               side_padding = 0,
             },
           }
@@ -141,6 +149,23 @@ local setup_tools = function()
             })
         end,
     })
+	
+		-- -- gray
+	-- vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg='NONE', strikethrough=true, fg='#808080' })
+	-- -- blue
+	-- vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg='NONE', fg='#569CD6' })
+	-- vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link='CmpIntemAbbrMatch' })
+	-- -- light blue
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg='NONE', fg='#9CDCFE' })
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link='CmpItemKindVariable' })
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindText', { link='CmpItemKindVariable' })
+	-- -- pink
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg='NONE', fg='#C586C0' })
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link='CmpItemKindFunction' })
+	-- -- front
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg='NONE', fg='#D4D4D4' })
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
+	-- vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
 end
 
 return {
@@ -162,10 +187,10 @@ return {
         local lspconfig = require('lspconfig')
 
         local servers = {
-            --"tsserver",
+            "tsserver",
             "clangd"
         }
-        --lspconfig.tsserver.setup {}
+        lspconfig.tsserver.setup {}
         lspconfig.clangd.setup {
             cmd = { 'clangd', '--background-index', '--compile-commands-dir', 'D:/systemc/excersies/build' },
             init_options = {
