@@ -36,6 +36,7 @@ return {
         },
         signature = {
           enabled = true,
+		  silent = false,
           auto_open = {
             enabled = true,
             trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
