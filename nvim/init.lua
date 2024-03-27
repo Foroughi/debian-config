@@ -16,8 +16,4 @@ if localNvimExits then
         package.path = vim.fn.getcwd() .. "/.nvim/?.lua;" .. vim.fn.getcwd() .. "/.nvim/lua/?.lua;" .. package.path;
         require("local-init");
    
-else
-   require("keys")
-   require("options")
-   require("plugins")
 end
