@@ -48,7 +48,7 @@ return {
             relative = "cursor",
             position = {
               row = 2,
-              col = 1,
+              col = 2,
             },
             size = {
               --min_width = 60,
@@ -56,10 +56,8 @@ return {
               height = "auto",
             },
             border = {
-              text = {
-                top = "Info",
-                top_align = "center",
-              },
+			  style = "none",
+              padding = { 1, 1 },
             },
           }, -- merged with defaults from documentation
         },
