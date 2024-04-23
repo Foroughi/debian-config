@@ -1,4 +1,4 @@
-sudo apt install -y xorg git wget software-properties-common libnotify-bin notification-daemon
+sudo apt install -y xorg git wget software-properties-common libnotify-bin dunst
 sudo add-apt-repository contrib
 sudo add-apt-repository non-free
 sudo apt update
