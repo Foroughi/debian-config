@@ -27,17 +27,10 @@ cd ..
 rm -rf tgwm
 cd ~
 
-cat << EOF >> file.txt
-The current working directory is: $PWD
-You are logged in as: $(whoami)
-EOF
-
-
 echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
 echo Name=TGWM  | sudo tee -a /usr/share/xsessions/tgwm.desktop
 echo Exec=tgwm  | sudo tee -a /usr/share/xsessions/tgwm.desktop
 echo Type=XSession | sudo tee -a /usr/share/xsessions/tgwm.desktop
-
 
 cp ~/.config/fonts/* ~/.fonts
 
@@ -66,6 +59,9 @@ rm -rf slim_themes
 cd ~
 
 fc-cache -f -v
+echo alias l="ls -ls" >> ~/.bashrc
+echo alias h="history" >> ~/.bashrc
+echo alias c="clear && neofetch" >> ~/.bashrc
 echo neofetch >> ~/.bashrc
 
 sudo reboot
