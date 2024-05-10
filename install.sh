@@ -4,11 +4,11 @@ sudo add-apt-repository non-free
 sudo apt update
 sudo apt install -y nvidia-driver kitty
 
-sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim
-sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky alsa-base pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
+sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl
+sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
 sudo dpkg-reconfigure slim
 
-mkdir ~/{.fonts , downloads , projects }
+mkdir ~/{.fonts downloads projects }
 sudo mkdir -p /usr/share/xsessions/
 sudo touch /usr/share/xsessions/tgwm.desktop
 
