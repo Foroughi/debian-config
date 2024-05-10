@@ -2,8 +2,8 @@ sudo apt install -y xorg git wget software-properties-common libnotify-bin dunst
 sudo add-apt-repository -y contrib
 sudo add-apt-repository -y non-free
 sudo apt update
-sudo apt install -y nvidia-driver kitty
-sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates
+sudo apt install -y nvidia-driver 
+sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates kitty
 sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
 sudo dpkg-reconfigure slim
 
