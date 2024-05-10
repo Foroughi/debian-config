@@ -16,7 +16,7 @@ sudo touch /usr/share/xsessions/tgwm.desktop
 
 cd ~/downloads
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install -y google-chrome-stable_current_amd64.deb 
+sudo apt install -y ./google-chrome-stable_current_amd64.deb 
 #rm google-chrome-stable_current_amd64.deb 
 cd ..
 
@@ -52,9 +52,9 @@ cd ~
 
 cd ~/downloads
 git clone https://github.com/adi1090x/slim_themes.git
-sudo cp -r slim_themes/typogin /usr/share/slim/themes/
+sudo cp -r slim_themes/themes/typogin /usr/share/slim/themes/
 echo current_theme typogin | sudo tee -a /etc/slim.conf
-echo loginc_cmd exec tgwm | sudo tee -a /etc/slim.conf
+echo login_cmd exec tgwm | sudo tee -a /etc/slim.conf
 
 rm -rf slim_themes
 cd ~
