@@ -3,7 +3,7 @@ sudo add-apt-repository -y contrib
 sudo add-apt-repository -y non-free
 sudo apt update
 sudo apt install -y nvidia-driver kitty
-sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl
+sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates
 sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
 sudo dpkg-reconfigure slim
 
@@ -68,4 +68,18 @@ echo neofetch >> ~/.bashrc
 pulseaudio --check
 pulseaudio -D
 
-echo "Done"
+
+### Docker Engine ###
+sudo apt-get update
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo usermod -aG docker $USER
+
+sudo reboot
