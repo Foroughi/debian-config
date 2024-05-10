@@ -56,6 +56,13 @@ rm -rf *.ttf
 rm -rf Hack.zip
 cd ~
 
+cd ~/downloads
+https://github.com/adi1090x/slim_themes.git
+sudo cp -r slim_themes/typogin /usr/share/slim/themes/
+echo current_theme typogin | sudo tee -a /etc/slim.conf
+rm -rf slim_themes
+cd ~
+
 fc-cache -f -v
 echo neofetch >> ~/.bashrc
 
