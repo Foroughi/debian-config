@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install -y nvidia-driver kitty
 
 sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim
-sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky pavucontrol ntfs-3g firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
+sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
 sudo dpkg-reconfigure slim
 
 mkdir ~/{.fonts , downloads , projects }
@@ -63,5 +63,8 @@ echo alias l="ls -ls" >> ~/.bashrc
 echo alias h="history" >> ~/.bashrc
 echo alias c="clear && neofetch" >> ~/.bashrc
 echo neofetch >> ~/.bashrc
+
+pulseaudio --check
+pulseaudio -D
 
 sudo reboot
