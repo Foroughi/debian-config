@@ -1,9 +1,9 @@
-sudo apt install -y xorg git wget software-properties-common libnotify-bin dunst
+sudo apt install -y xorg software-properties-common libnotify-bin dunst
 sudo add-apt-repository -y contrib
 sudo add-apt-repository -y non-free
 sudo apt update
-sudo apt install -y nvidia-driver 
-sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates kitty
+sudo apt install -y nvidia-driver  
+sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates kitty wget
 sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
 sudo dpkg-reconfigure slim
 
@@ -17,7 +17,7 @@ sudo touch /usr/share/xsessions/tgwm.desktop
 cd ~/downloads
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -y ./google-chrome-stable_current_amd64.deb 
-#rm google-chrome-stable_current_amd64.deb 
+rm google-chrome-stable_current_amd64.deb 
 cd ..
 
 cd ~/projects
@@ -25,7 +25,7 @@ git clone https://github.com/Foroughi/tgwm.git
 cd tgwm
 sudo make install
 cd ..
-#rm -rf tgwm
+rm -rf tgwm
 cd ~
 
 echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
