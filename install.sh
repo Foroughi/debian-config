@@ -94,6 +94,7 @@ ssh-keygen -t ed25519 -C "foroughi.ali@gmail.com"
 
 git config --global user.email "foroughi.ali@gmail.com"
 git config --global user.name "Ali Foroughi"
+git config pull.rebase true
 
 
 
