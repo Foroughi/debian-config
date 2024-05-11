@@ -89,6 +89,7 @@ sudo apt install -y ./code*.deb
 rm -rf ./code*.deb
 cd ~
 
+ssh-keygen -t ed25519 -C "foroughi.ali@gmail.com"
 
 
 sudo reboot
