@@ -82,4 +82,13 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $USER
 
+### VsCode ###
+cd ~/downloads
+wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+sudo apt install -y ./code*.deb
+rm -rf ./code*.deb
+cd ~
+
+
+
 sudo reboot
