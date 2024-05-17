@@ -24,8 +24,6 @@ cd ~/projects
 git clone https://github.com/Foroughi/tgwm.git
 cd tgwm
 sudo make install
-cd ..
-rm -rf tgwm
 cd ~
 
 echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
@@ -37,10 +35,7 @@ cp ~/.config/fonts/* ~/.fonts
 
 curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh
 source ~/.bashrc
-fancygit --set-user-name " Ali"
-fancygit --disable-time
-fancygit --enable-bold-prompt
-fancygit --enable-double-line
+
 
 cd ~/downloads
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
@@ -60,10 +55,7 @@ rm -rf slim_themes
 cd ~
 
 fc-cache -f -v
-echo alias l="ls -ls" >> ~/.bashrc
-echo alias h="history" >> ~/.bashrc
-echo alias c="clear" >> ~/.bashrc
-echo neofetch >> ~/.bashrc
+echo . ~/.config/mybashrc.sh >> ~/.bashrc
 
 pulseaudio --check
 pulseaudio -D
