@@ -3,8 +3,8 @@ sudo add-apt-repository -y contrib
 sudo add-apt-repository -y non-free
 sudo apt update
 sudo apt install -y nvidia-driver  
-sudo apt install -y cmake build-essential ranger compton rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates kitty wget lxappearance
-sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix
+sudo apt install -y cmake build-essential ranger picom rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates kitty wget lxappearance
+sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix fzf
 sudo dpkg-reconfigure slim
 
 mkdir ~/.fonts
@@ -89,6 +89,10 @@ git config --global user.name "Ali Foroughi"
 git config pull.rebase true
 git config --global init.defaultBranch master
 
-
+### FZF ###
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+cd ~/.fzf
+./install
 
 sudo reboot
