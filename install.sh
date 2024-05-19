@@ -55,7 +55,9 @@ rm -rf slim_themes
 cd ~
 
 fc-cache -f -v
-echo . ~/.config/mybashrc.sh >> ~/.bashrc
+
+
+
 
 pulseaudio --check
 pulseaudio -D
@@ -94,5 +96,15 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 cd ~/.fzf
 ./install
+
+### CUSTOM BASHRC ###
+echo . ~/.config/mybashrc.sh >> ~/.bashrc
+
+### CUSTOM PROFILE ###
+echo "if [ -d \"$HOME/.config\" ] ; then
+        if [ -f \"$HOME/.config/myprofile.sh\" ] ; then
+                . \"$HOME/.config/myprofile.sh\"
+        fi
+fi" >> ~/.profile
 
 sudo reboot

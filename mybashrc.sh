@@ -1,4 +1,4 @@
-alias l='ls -ls'
+alias l='ls -ls -a'
 alias h='history'
 alias c='clear'
 alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
@@ -25,7 +25,9 @@ fancygit --enable-double-line
 
 if [ "$TERM" == "tmux-256color" ]; then
 
+    alias c='clear && neofetch'
     neofetch
+    
 
 fi
 
