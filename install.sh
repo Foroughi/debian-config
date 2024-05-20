@@ -25,10 +25,24 @@ batch_install() {
 
 
 Applications() {    
-       
-    apt install -y xorg cmake build-essential ranger picom rofi unzip alsa-utils nitrogen htop slim ca-certificates kitty wget polybar  libnotify-bin dunst libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix fzf 2>/dev/null    
+    
+    printf "\r[ ] Installing Applications (Xorg)"
+    apt install -y xorg 2>/dev/null    
 
+    printf "\r[ ] Installing Applications (Build)"
+    apt install -y cmake build-essential 2>/dev/null    
+
+    printf "\r[ ] Installing Applications (Libraries)"
+    apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev 2>/dev/null    
+
+    printf "\r[ ] Installing Applications (Sound)"
+    apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek 2>/dev/null 
+
+    printf "\r[ ] Installing Applications (Misc)"
+    apt install -y ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf 2>/dev/null    
+    
 }
+
 
 Nvidia() {    
    
@@ -36,8 +50,10 @@ Nvidia() {
     add-apt-repository -y contrib 2>/dev/null    
     add-apt-repository -y non-free 2>/dev/null    
     apt update 2>/dev/null    
-    apt install -y nvidia-driver 2>/dev/null    
-
+    bash -e
+    apt install -y nvidia-driver 
+    exit
+        
 }
 
 
