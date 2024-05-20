@@ -198,27 +198,26 @@ Preperation() {
 
 }
 
-exit
-batch_install Xorg
-batch_install Build
-batch_install Libraries
-batch_install Sound
-batch_install Misc
-batch_install Nvidia
-batch_install Directories Creating
-batch_install Google_Chrome
-batch_install TGWM
-batch_install Hack_Fonts
-batch_install Slim
-batch_install Docker
-batch_install VsCode
-batch_install Github_SSH_key
-batch_install Git Configuring
-batch_install Fuzzy_Finder
-batch_install Custom_BashRC Configuring
-batch_install Custom_Profile Configuring
-batch_install Github_CLI
-batch_install Preperation Final
+#batch_install Xorg
+#batch_install Build
+#batch_install Libraries
+#batch_install Sound
+#batch_install Misc
+#batch_install Nvidia
+#batch_install Directories Creating
+#batch_install Google_Chrome
+#batch_install TGWM
+#batch_install Hack_Fonts
+#batch_install Slim
+#batch_install Docker
+#batch_install VsCode
+#batch_install Github_SSH_key
+#batch_install Git Configuring
+#batch_install Fuzzy_Finder
+#batch_install Custom_BashRC Configuring
+#batch_install Custom_Profile Configuring
+#batch_install Github_CLI
+#batch_install Preperation Final
 
 
 #reboot
