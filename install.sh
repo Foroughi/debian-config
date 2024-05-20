@@ -18,7 +18,7 @@ batch_install() {
         printf "[ ] $2 $1"
     fi    
 
-    $1 >> /dev/null
+    $1 
 
     printf "\r[D] $1                             \n"
 }
