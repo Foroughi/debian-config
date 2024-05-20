@@ -54,7 +54,7 @@ Nvidia() {
     echo "blacklist nouveau" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
     echo "options nouveau modeset=0" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
 
-    dudo update-initramfs -u >> /dev/null
+    sudo update-initramfs -u >> /dev/null
 
     sudo apt install -y software-properties-common 2>/dev/null    
     sudo add-apt-repository -y contrib 2>/dev/null    
@@ -92,7 +92,6 @@ TGWM() {
     git clone -q https://github.com/Foroughi/tgwm.git
     cd tgwm
     sudo make install -q
-    cd ~
 
     echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
     echo Name=TGWM  | sudo tee -a /usr/share/xsessions/tgwm.desktop
@@ -105,7 +104,7 @@ TGWM() {
 
 FancyGit() { 
 
-    curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh        
+    curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh   >> /dev/null     
 }
 
 Hack_Fonts() {
@@ -182,10 +181,10 @@ Github_CLI() {
 
     mkdir -p -m 755 /etc/apt/keyrings \
     && wget -q O- https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-    && chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-    && apt update 2>/dev/null \
-    && apt install gh -y 2>/dev/null
+    && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && sudo apt update 2>/dev/null \
+    && sudo apt install gh -y 2>/dev/null
 
 }
 
