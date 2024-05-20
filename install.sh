@@ -1,10 +1,3 @@
-#!/bin/bash
-
-if [ "$USER" != "root" ]
-then
-    echo "Run the script as root with sudo"
-    exit 0;
-fi
 
 clear
 
@@ -26,49 +19,49 @@ batch_install() {
 
 Xorg() {    
         
-    apt install -y xorg 2>/dev/null    
+    sudo apt install -y xorg 2>/dev/null    
 
 }
 
 Build() {    
         
-    apt install -y cmake build-essential 2>/dev/null    
+    sudo apt install -y cmake build-essential 2>/dev/null    
 
 }
 
 Libraries() {    
         
-    apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev 2>/dev/null    
+    sudo apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev 2>/dev/null    
 
 }
 
 Sound() {    
         
-    apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek 2>/dev/null 
+    sudo apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek 2>/dev/null 
 
 }
 
 Misc() {    
     
-    apt install -y ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf 2>/dev/null    
+    sudo apt install -y curl ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf 2>/dev/null    
     
 }
 
 
 Nvidia() {    
     
-    touch /etc/modprobe.d/blacklist-nouveau.conf
-    echo "blacklist nouveau" | tee -a /etc/modprobe.d/blacklist-nouveau.conf
-    echo "options nouveau modeset=0" | tee -a /etc/modprobe.d/blacklist-nouveau.conf
+    sudo touch /etc/modprobe.d/blacklist-nouveau.conf
+    echo "blacklist nouveau" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
+    echo "options nouveau modeset=0" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
 
-    update-initramfs -u >> /dev/null
+    dudo update-initramfs -u >> /dev/null
 
-    apt install -y software-properties-common 2>/dev/null    
-    add-apt-repository -y contrib 2>/dev/null    
-    add-apt-repository -y non-free 2>/dev/null    
-    apt update 2>/dev/null    
+    sudo apt install -y software-properties-common 2>/dev/null    
+    sudo add-apt-repository -y contrib 2>/dev/null    
+    sudo add-apt-repository -y non-free 2>/dev/null    
+    sudo apt update 2>/dev/null    
     
-    apt install -y nvidia-driver 2>/dev/null         
+    sudo apt install -y nvidia-driver 2>/dev/null         
 }
 
 
@@ -86,25 +79,25 @@ Google_Chrome() {
 
     cd ~/downloads
     wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    apt install -y ./google-chrome-stable_current_amd64.deb 2>/dev/null 
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb 2>/dev/null 
     rm google-chrome-stable_current_amd64.deb    
 
 }
 
 TGWM() { 
 
-    mkdir -p /usr/share/xsessions/
-    touch /usr/share/xsessions/tgwm.desktop
+    sudo mkdir -p /usr/share/xsessions/
+    sudo touch /usr/share/xsessions/tgwm.desktop
     cd ~/projects
     git clone -q https://github.com/Foroughi/tgwm.git
     cd tgwm
-    make install -q
+    sudo make install -q
     cd ~
 
-    echo [Desktop Entry]  | tee -a /usr/share/xsessions/tgwm.desktop
-    echo Name=TGWM  | tee -a /usr/share/xsessions/tgwm.desktop
-    echo Exec=tgwm  | tee -a /usr/share/xsessions/tgwm.desktop
-    echo Type=XSession | tee -a /usr/share/xsessions/tgwm.desktop
+    echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
+    echo Name=TGWM  | sudo tee -a /usr/share/xsessions/tgwm.desktop
+    echo Exec=tgwm  | sudo tee -a /usr/share/xsessions/tgwm.desktop
+    echo Type=XSession | sudo tee -a /usr/share/xsessions/tgwm.desktop
 
     cp ~/.config/fonts/* ~/.fonts
 
@@ -126,34 +119,33 @@ Hack_Fonts() {
 }
 
 Slim() {
-    apt install slim -y 2>/dev/null 
-    dpkg-reconfigure slim
+    sudo apt install slim -y 2>/dev/null 
+    sudo dpkg-reconfigure slim
     cd ~/downloads
     git clone -q https://github.com/adi1090x/slim_themes.git
-    cp -r slim_themes/themes/typogin /usr/share/slim/themes/
-    echo current_theme typogin | tee -a /etc/slim.conf
-    echo login_cmd exec tgwm | tee -a /etc/slim.conf
+    sudo cp -r slim_themes/themes/typogin /usr/share/slim/themes/
+    echo current_theme typogin | sudo tee -a /etc/slim.conf
+    echo login_cmd exec tgwm | sudo tee -a /etc/slim.conf
     rm -rf slim_themes
 }
 
 Docker() {
-    apt-get update 2>/dev/null 
-    install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-    chmod a+r /etc/apt/keyrings/docker.asc
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
     echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-    tee /etc/apt/sources.list.d/docker.list > /dev/null
-    apt-get update 2>/dev/null 
-    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  2>/dev/null
-    usermod -aG docker $USER
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update 2>/dev/null 
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  2>/dev/null
+    sudo usermod -aG docker $USER
 }
 
 VsCode() {
     cd ~/downloads
     wget -q https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
-    apt install -y ./code*.deb 2>/dev/null
+    sudo apt install -y ./code*.deb 2>/dev/null
     rm -rf ./code*.deb    
 }
 
@@ -171,7 +163,7 @@ Git() {
 Fuzzy_Finder() {
     git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     cd ~/.fzf
-    ./install --all
+    ./install --all >> /dev/null
 }
 
 Custom_BashRC() {
@@ -202,7 +194,8 @@ Preperation() {
     fc-cache -f -v
     pulseaudio --check
     pulseaudio -D
-    usermod -aG audio video
+    sudo usermod -aG audio $USER
+    sudo usermod -aG video $USER
 
 }
 
