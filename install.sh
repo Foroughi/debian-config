@@ -198,7 +198,7 @@ Preperation() {
 
 }
 
-
+exit
 batch_install Xorg
 batch_install Build
 batch_install Libraries
