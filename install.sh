@@ -207,11 +207,11 @@ Preperation() {
 }
 
 
-# batch_install Xorg
-# batch_install Build
-# batch_install Libraries
-# batch_install Sound
-# batch_install Misc
+batch_install Xorg
+batch_install Build
+batch_install Libraries
+batch_install Sound
+batch_install Misc
 batch_install Nvidia
 batch_install Directories Creating
 batch_install Google_Chrome
