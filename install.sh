@@ -6,6 +6,8 @@ then
     exit 0;
 fi
 
+clear
+
 batch_install() {
     cd ~
 
@@ -23,12 +25,18 @@ batch_install() {
 
 
 Applications() {    
+       
+    apt install -y xorg cmake build-essential ranger picom rofi unzip alsa-utils nitrogen htop slim ca-certificates kitty wget polybar  libnotify-bin dunst libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix fzf 2>/dev/null    
+
+}
+
+Nvidia() {    
    
     apt install -y software-properties-common 2>/dev/null    
     add-apt-repository -y contrib 2>/dev/null    
     add-apt-repository -y non-free 2>/dev/null    
     apt update 2>/dev/null    
-    apt install -y nvidia-driver xorg cmake build-essential ranger picom rofi unzip alsa-utils nitrogen htop slim ca-certificates kitty wget polybar  libnotify-bin dunst libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix fzf 2>/dev/null    
+    apt install -y nvidia-driver 2>/dev/null    
 
 }
 
@@ -169,6 +177,7 @@ Preperation() {
 
 
 batch_install Applications
+batch_install Nvidia
 batch_install Directories Creating
 batch_install Google_Chrome
 batch_install TGWM
