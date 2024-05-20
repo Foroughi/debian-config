@@ -61,10 +61,8 @@ Nvidia() {
     add-apt-repository -y contrib 2>/dev/null    
     add-apt-repository -y non-free 2>/dev/null    
     apt update 2>/dev/null    
-    bash -e
-    apt install -y nvidia-driver 
-    exit
-        
+    
+    apt install -y nvidia-driver             
 }
 
 
