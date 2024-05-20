@@ -223,4 +223,4 @@ batch_install Nvidia
 # batch_install Preperation Final
 
 
-reboot
+#reboot
