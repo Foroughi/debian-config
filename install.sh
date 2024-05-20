@@ -24,21 +24,32 @@ batch_install() {
 }
 
 
-Applications() {    
-    
-    printf "\r[ ] Installing Applications (Xorg)"
+Xorg() {    
+        
     apt install -y xorg 2>/dev/null    
 
-    printf "\r[ ] Installing Applications (Build)"
+}
+
+Build() {    
+        
     apt install -y cmake build-essential 2>/dev/null    
 
-    printf "\r[ ] Installing Applications (Libraries)"
+}
+
+Libraries() {    
+        
     apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev 2>/dev/null    
 
-    printf "\r[ ] Installing Applications (Sound)"
+}
+
+Sound() {    
+        
     apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek 2>/dev/null 
 
-    printf "\r[ ] Installing Applications (Misc)"
+}
+
+Misc() {    
+    
     apt install -y ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf 2>/dev/null    
     
 }
@@ -192,7 +203,11 @@ Preperation() {
 }
 
 
-batch_install Applications
+batch_install Xorg
+batch_install Build
+batch_install Libraries
+batch_install Sound
+batch_install Misc
 batch_install Nvidia
 batch_install Directories Creating
 batch_install Google_Chrome
@@ -208,5 +223,6 @@ batch_install Custom_BashRC Configuring
 batch_install Custom_Profile Configuring
 batch_install Github_CLI
 batch_install Preperation Final
+
 
 reboot
