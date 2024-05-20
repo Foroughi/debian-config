@@ -5,3 +5,6 @@ mimeapps.list
 pavucontrol.ini
 Code/**
 pulse/**
+gh/**
+QtProject.conf
+VirtualBox/**

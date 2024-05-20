@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias l='ls -ls -a'
 alias h='history'
 alias c='clear'

@@ -1,110 +1,187 @@
-sudo apt install -y xorg software-properties-common libnotify-bin dunst
-sudo add-apt-repository -y contrib
-sudo add-apt-repository -y non-free
-sudo apt update
-sudo apt install -y nvidia-driver  
-sudo apt install -y cmake build-essential ranger picom rofi unzip alsa-utils nitrogen network-manager htop slim curl ca-certificates kitty wget polybar 
-sudo apt install -y libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix fzf
-sudo dpkg-reconfigure slim
+#!/bin/bash
 
-mkdir ~/.fonts
-mkdir ~/downloads
-mkdir ~/projects
-sudo mkdir -p /usr/share/xsessions/
-sudo touch /usr/share/xsessions/tgwm.desktop
+if [ "$USER" != "root" ]
+then
+    echo "Run the script as root with sudo"
+    exit 0;
+fi
 
+batch_install() {
+    cd ~
 
-cd ~/downloads
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install -y ./google-chrome-stable_current_amd64.deb 
-rm google-chrome-stable_current_amd64.deb 
-cd ..
+    if [ -z $2 ] 
+    then
+        printf "[ ] Installing $1"
+    else
+        printf "[ ] $2 $1"
+    fi    
 
-cd ~/projects
-git clone https://github.com/Foroughi/tgwm.git
-cd tgwm
-sudo make install
-cd ~
+    $1 >> /dev/null
 
-echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
-echo Name=TGWM  | sudo tee -a /usr/share/xsessions/tgwm.desktop
-echo Exec=tgwm  | sudo tee -a /usr/share/xsessions/tgwm.desktop
-echo Type=XSession | sudo tee -a /usr/share/xsessions/tgwm.desktop
-
-cp ~/.config/fonts/* ~/.fonts
-
-curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh
-source ~/.bashrc
+    printf "\r[D] $1                             \n"
+}
 
 
-cd ~/downloads
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
-unzip Hack.zip
-cp *.ttf ~/.fonts
-rm -rf *.ttf
-rm -rf Hack.zip
-cd ~
+Applications() {    
+   
+    apt install -y software-properties-common 2>/dev/null    
+    add-apt-repository -y contrib 2>/dev/null    
+    add-apt-repository -y non-free 2>/dev/null    
+    apt update 2>/dev/null    
+    apt install -y nvidia-driver xorg cmake build-essential ranger picom rofi unzip alsa-utils nitrogen htop slim ca-certificates kitty wget polybar  libnotify-bin dunst libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev conky  pulseaudio pavucontrol firmware-realtek scrot tmux libgoogle-glog-dev neofetch cmatrix fzf 2>/dev/null    
 
-cd ~/downloads
-git clone https://github.com/adi1090x/slim_themes.git
-sudo cp -r slim_themes/themes/typogin /usr/share/slim/themes/
-echo current_theme typogin | sudo tee -a /etc/slim.conf
-echo login_cmd exec tgwm | sudo tee -a /etc/slim.conf
-
-rm -rf slim_themes
-cd ~
-
-fc-cache -f -v
+}
 
 
 
+Directories() { 
 
-pulseaudio --check
-pulseaudio -D
+    mkdir ~/.fonts
+    mkdir ~/downloads
+    mkdir ~/projects
 
-
-### Docker Engine ###
-sudo apt-get update
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo usermod -aG docker $USER
-
-### VsCode ###
-cd ~/downloads
-wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
-sudo apt install -y ./code*.deb
-rm -rf ./code*.deb
-cd ~
-
-ssh-keygen -t ed25519 -C "foroughi.ali@gmail.com"
+}
 
 
-git config --global user.email "foroughi.ali@gmail.com"
-git config --global user.name "Ali Foroughi"
-git config pull.rebase true
-git config --global init.defaultBranch master
+Google_Chrome() { 
 
-### FZF ###
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-cd ~/.fzf
-./install
+    cd ~/downloads
+    wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    apt install -y ./google-chrome-stable_current_amd64.deb 2>/dev/null 
+    rm google-chrome-stable_current_amd64.deb    
 
-### CUSTOM BASHRC ###
-echo . ~/.config/mybashrc.sh >> ~/.bashrc
+}
 
-### CUSTOM PROFILE ###
-echo "if [ -d \"$HOME/.config\" ] ; then
-        if [ -f \"$HOME/.config/myprofile.sh\" ] ; then
-                . \"$HOME/.config/myprofile.sh\"
-        fi
-fi" >> ~/.profile
+TGWM() { 
 
-sudo reboot
+    mkdir -p /usr/share/xsessions/
+    touch /usr/share/xsessions/tgwm.desktop
+    cd ~/projects
+    git clone -q https://github.com/Foroughi/tgwm.git
+    cd tgwm
+    make install -q
+    cd ~
+
+    echo [Desktop Entry]  | tee -a /usr/share/xsessions/tgwm.desktop
+    echo Name=TGWM  | tee -a /usr/share/xsessions/tgwm.desktop
+    echo Exec=tgwm  | tee -a /usr/share/xsessions/tgwm.desktop
+    echo Type=XSession | tee -a /usr/share/xsessions/tgwm.desktop
+
+    cp ~/.config/fonts/* ~/.fonts
+
+}
+
+FancyGit() { 
+
+    curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh        
+}
+
+Hack_Fonts() {
+
+    cd ~/downloads
+    wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
+    unzip Hack.zip
+    cp *.ttf ~/.fonts
+    rm -rf *.ttf
+    rm -rf Hack.zip    
+}
+
+Slim() {
+    apt install slim -y 2>/dev/null 
+    dpkg-reconfigure slim
+    cd ~/downloads
+    git clone -q https://github.com/adi1090x/slim_themes.git
+    cp -r slim_themes/themes/typogin /usr/share/slim/themes/
+    echo current_theme typogin | tee -a /etc/slim.conf
+    echo login_cmd exec tgwm | tee -a /etc/slim.conf
+    rm -rf slim_themes
+}
+
+Docker() {
+    apt-get update 2>/dev/null 
+    install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+    chmod a+r /etc/apt/keyrings/docker.asc
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null
+    apt-get update 2>/dev/null 
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  2>/dev/null
+    usermod -aG docker $USER
+}
+
+VsCode() {
+    cd ~/downloads
+    wget -q https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+    apt install -y ./code*.deb 2>/dev/null
+    rm -rf ./code*.deb    
+}
+
+Github_SSH_key() {
+    ssh-keygen -q -t ed25519 -C "foroughi.ali@gmail.com" -f ~/.ssh/id_github  -P ""
+}
+
+Git() {
+    git config --global user.email "foroughi.ali@gmail.com"
+    git config --global user.name "Ali Foroughi"
+    git config --global pull.rebase true
+    git config --global init.defaultBranch master
+}
+
+Fuzzy_Finder() {
+    git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    cd ~/.fzf
+    ./install --all
+}
+
+Custom_BashRC() {
+    echo . ~/.config/mybashrc.sh >> ~/.bashrc
+}
+
+Custom_Profile() {
+    echo "if [ -d \"$HOME/.config\" ] ; then
+            if [ -f \"$HOME/.config/myprofile.sh\" ] ; then
+                    . \"$HOME/.config/myprofile.sh\"
+            fi
+    fi" >> ~/.profile
+}
+
+Github_CLI() {
+
+    mkdir -p -m 755 /etc/apt/keyrings \
+    && wget -q O- https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+    && chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt update 2>/dev/null \
+    && apt install gh -y 2>/dev/null
+
+}
+
+Preperation() {
+
+    fc-cache -f -v
+    pulseaudio --check
+    pulseaudio -D
+    usermod -aG audio video
+
+}
+
+
+batch_install Applications
+batch_install Directories Creating
+batch_install Google_Chrome
+batch_install TGWM
+batch_install Hack_Fonts
+batch_install Slim
+batch_install Docker
+batch_install VsCode
+batch_install Github_SSH_key
+batch_install Git Configuring
+batch_install Fuzzy_Finder
+batch_install Custom_BashRC Configuring
+batch_install Custom_Profile Configuring
+batch_install Github_CLI
+batch_install Preperation Final
+
+reboot
