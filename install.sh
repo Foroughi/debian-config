@@ -18,7 +18,7 @@ batch_install() {
         printf "[ ] $2 $1"
     fi    
 
-    $1 
+    $1 >> /dev/null
 
     printf "\r[D] $1                             \n"
 }
@@ -56,13 +56,19 @@ Misc() {
 
 
 Nvidia() {    
-   
+    
+    touch /etc/modprobe.d/blacklist-nouveau.conf
+    echo "blacklist nouveau" | tee -a /etc/modprobe.d/blacklist-nouveau.conf
+    echo "options nouveau modeset=0" | tee -a /etc/modprobe.d/blacklist-nouveau.conf
+
+    update-initramfs -u >> /dev/null
+
     apt install -y software-properties-common 2>/dev/null    
     add-apt-repository -y contrib 2>/dev/null    
     add-apt-repository -y non-free 2>/dev/null    
     apt update 2>/dev/null    
     
-    apt install -y nvidia-driver             
+    apt install -y nvidia-driver 2>/dev/null         
 }
 
 
@@ -207,20 +213,20 @@ Preperation() {
 # batch_install Sound
 # batch_install Misc
 batch_install Nvidia
-# batch_install Directories Creating
-# batch_install Google_Chrome
-# batch_install TGWM
-# batch_install Hack_Fonts
-# batch_install Slim
-# batch_install Docker
-# batch_install VsCode
-# batch_install Github_SSH_key
-# batch_install Git Configuring
-# batch_install Fuzzy_Finder
-# batch_install Custom_BashRC Configuring
-# batch_install Custom_Profile Configuring
-# batch_install Github_CLI
-# batch_install Preperation Final
+batch_install Directories Creating
+batch_install Google_Chrome
+batch_install TGWM
+batch_install Hack_Fonts
+batch_install Slim
+batch_install Docker
+batch_install VsCode
+batch_install Github_SSH_key
+batch_install Git Configuring
+batch_install Fuzzy_Finder
+batch_install Custom_BashRC Configuring
+batch_install Custom_Profile Configuring
+batch_install Github_CLI
+batch_install Preperation Final
 
 
 #reboot
