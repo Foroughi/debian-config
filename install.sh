@@ -136,8 +136,11 @@ Docker() {
 }
 
 VsCode() {
-    sudo apt install -y ~/.config/code.deb 2>/dev/null
-    sudo apt upgrade code -y 2>/dev/null
+
+    sudo touch /etc/apt/sources.list.d/vscode.list
+    echo "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main"  | sudo tee -a /etc/apt/sources.list.d/vscode.list
+    sudo apt update 2>/dev/null
+    sudo apt install code -y 2>/dev/null
 }
 
 Github_SSH_key() {
