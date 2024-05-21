@@ -144,7 +144,7 @@ VsCode() {
 }
 
 Github_SSH_key() {
-    ssh-keygen -q -t ed25519 -C "foroughi.ali@gmail.com" -f ~/.ssh/id_github  -P ""
+    ssh-keygen -q -t ed25519 -C "foroughi.ali@gmail.com"  -P ""
 }
 
 Git() {
