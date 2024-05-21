@@ -49,19 +49,13 @@ Misc() {
 
 
 Nvidia() {    
-    
-    sudo touch /etc/modprobe.d/blacklist-nouveau.conf
-    echo "blacklist nouveau" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
-    echo "options nouveau modeset=0" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
-
-    sudo update-initramfs -u >> /dev/null
 
     sudo apt install -y software-properties-common 2>/dev/null    
     sudo add-apt-repository -y contrib 2>/dev/null    
     sudo add-apt-repository -y non-free 2>/dev/null    
     sudo apt update 2>/dev/null    
     
-    sudo apt install -y nvidia-driver 2>/dev/null         
+             
 }
 
 
@@ -142,10 +136,8 @@ Docker() {
 }
 
 VsCode() {
-    cd ~/downloads
-    wget -q https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
-    sudo apt install -y ./code*.deb 2>/dev/null
-    rm -rf ./code*.deb    
+    sudo apt install -y ~/.config/code.deb 2>/dev/null
+    sudo apt upgrade code -y 2>/dev/null
 }
 
 Github_SSH_key() {
@@ -160,6 +152,8 @@ Git() {
 }
 
 Fuzzy_Finder() {
+	~/.fzf/uninstall >> /dev/null
+	rm -rf ~/.fzf
     git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     cd ~/.fzf
     ./install --all >> /dev/null
@@ -184,40 +178,44 @@ Github_CLI() {
     && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
     && sudo apt update 2>/dev/null \
-    && sudo apt install gh -y 2>/dev/null
+    && sudo apt install gh -y >> /dev/null
 
 }
 
 Preperation() {
 
-    fc-cache -f -v
+    fc-cache -f -v >> /dev/null
     pulseaudio --check
     pulseaudio -D
     sudo usermod -aG audio $USER
     sudo usermod -aG video $USER
 
+    sudo apt upgrade -y   >> /dev/null
+
 }
 
-#batch_install Xorg
-#batch_install Build
-#batch_install Libraries
-#batch_install Sound
-#batch_install Misc
-#batch_install Nvidia
-#batch_install Directories Creating
-#batch_install Google_Chrome
-#batch_install TGWM
-#batch_install Hack_Fonts
-#batch_install Slim
-#batch_install Docker
-#batch_install VsCode
-#batch_install Github_SSH_key
-#batch_install Git Configuring
-#batch_install Fuzzy_Finder
-#batch_install Custom_BashRC Configuring
-#batch_install Custom_Profile Configuring
-#batch_install Github_CLI
-#batch_install Preperation Final
+batch_install Xorg
+batch_install Build
+batch_install Libraries
+batch_install Sound
+batch_install Misc
+batch_install Nvidia
+batch_install Directories Creating
+batch_install Google_Chrome
+batch_install TGWM
+batch_install Hack_Fonts
+batch_install Slim
+batch_install Docker
+batch_install VsCode
+batch_install Github_SSH_key
+batch_install Git Configuring
+batch_install Fuzzy_Finder
+batch_install FancyGit
+batch_install Custom_BashRC Configuring
+batch_install Custom_Profile Configuring
+batch_install Github_CLI
+batch_install Preperation Final
 
+sudo apt install -y nvidia-driver
 
-#reboot
+reboot
