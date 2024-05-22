@@ -29,13 +29,13 @@ Libraries() {
 
 Sound() {    
         
-    sudo apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek 2>/dev/null 
+    sudo apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek  
 
 }
 
 Misc() {    
     
-    sudo apt install -y curl ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   
+    sudo apt install -y curl ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
     
 }
 
@@ -65,7 +65,7 @@ Google_Chrome() {
 
     cd ~/downloads
     wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install -y ./google-chrome-stable_current_amd64.deb 2>/dev/null 
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb  
     rm google-chrome-stable_current_amd64.deb    
 
 }
@@ -104,7 +104,7 @@ Hack_Fonts() {
 }
 
 Slim() {
-    sudo apt install slim -y 2>/dev/null 
+    sudo apt install slim -y  
     sudo dpkg-reconfigure slim
     cd ~/downloads
     git clone -q https://github.com/adi1090x/slim_themes.git
@@ -122,17 +122,22 @@ Docker() {
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt-get update 2>/dev/null 
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  2>/dev/null
+    sudo apt-get update  
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  
     sudo usermod -aG docker $USER
 }
 
 VsCode() {
 
-    sudo touch /etc/apt/sources.list.d/vscode.list
-    echo "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main"  | sudo tee -a /etc/apt/sources.list.d/vscode.list
-    sudo apt update 2>/dev/null
-    sudo apt install code -y 2>/dev/null
+    
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+    echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+    rm -f packages.microsoft.gpg
+    
+    sudo apt update
+    sudo apt install code # or code-insiders
+
 }
 
 Github_SSH_key() {
@@ -172,7 +177,7 @@ Github_CLI() {
     && wget -q O- https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
     && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-    && sudo apt update 2>/dev/null \
+    && sudo apt update  \
     && sudo apt install gh -y 
 
 }
