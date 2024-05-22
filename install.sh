@@ -1,37 +1,29 @@
-
-clear
+#!/bin/bash
 
 batch_install() {
+
+    clear
     cd ~
-
-    if [ -z $2 ] 
-    then
-        printf "[ ] Installing $1"
-    else
-        printf "[ ] $2 $1"
-    fi    
-
-    $1 >> /dev/null
-
-    printf "\r[D] $1                             \n"
+    $1
+    
 }
 
 
 Xorg() {    
         
-    sudo apt install -y xorg 2>/dev/null    
+    sudo apt install -y xorg   
 
 }
 
 Build() {    
         
-    sudo apt install -y cmake build-essential 2>/dev/null    
+    sudo apt install -y cmake build-essential   
 
 }
 
 Libraries() {    
         
-    sudo apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev 2>/dev/null    
+    sudo apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev   
 
 }
 
@@ -43,18 +35,18 @@ Sound() {
 
 Misc() {    
     
-    sudo apt install -y curl ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf 2>/dev/null    
+    sudo apt install -y curl ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   
     
 }
 
 
 Nvidia() {    
 
-    sudo apt install -y software-properties-common 2>/dev/null    
-    sudo add-apt-repository -y contrib 2>/dev/null    
-    sudo add-apt-repository -y non-free 2>/dev/null    
-    sudo apt update 2>/dev/null    
-    
+    sudo apt install -y software-properties-common   
+    sudo add-apt-repository -y contrib   
+    sudo add-apt-repository -y non-free   
+    sudo apt update   
+    sudo apt install -y nvidia-driver
              
 }
 
@@ -85,7 +77,7 @@ TGWM() {
     cd ~/projects
     git clone -q https://github.com/Foroughi/tgwm.git
     cd tgwm
-    sudo make install -q
+    sudo make install 
 
     echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
     echo Name=TGWM  | sudo tee -a /usr/share/xsessions/tgwm.desktop
@@ -98,7 +90,7 @@ TGWM() {
 
 FancyGit() { 
 
-    curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh   >> /dev/null     
+    curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh        
 }
 
 Hack_Fonts() {
@@ -152,14 +144,14 @@ Git() {
     git config --global user.name "Ali Foroughi"
     git config --global pull.rebase true
     git config --global init.defaultBranch master
+    
 }
 
 Fuzzy_Finder() {
-	~/.fzf/uninstall >> /dev/null
-	rm -rf ~/.fzf
+		
     git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     cd ~/.fzf
-    ./install --all >> /dev/null
+    ./install  
 }
 
 Custom_BashRC() {
@@ -181,44 +173,266 @@ Github_CLI() {
     && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
     && sudo apt update 2>/dev/null \
-    && sudo apt install gh -y >> /dev/null
+    && sudo apt install gh -y 
 
 }
 
 Preperation() {
 
-    fc-cache -f -v >> /dev/null
+    fc-cache -f -v 
     pulseaudio --check
     pulseaudio -D
     sudo usermod -aG audio $USER
-    sudo usermod -aG video $USER
-
-    sudo apt upgrade -y   >> /dev/null
+    sudo usermod -aG video $USER    
 
 }
 
-batch_install Xorg
-batch_install Build
-batch_install Libraries
-batch_install Sound
-batch_install Misc
-batch_install Nvidia
-batch_install Directories Creating
-batch_install Google_Chrome
-batch_install TGWM
-batch_install Hack_Fonts
-batch_install Slim
-batch_install Docker
-batch_install VsCode
-batch_install Github_SSH_key
-batch_install Git Configuring
-batch_install Fuzzy_Finder
-batch_install FancyGit
-batch_install Custom_BashRC Configuring
-batch_install Custom_Profile Configuring
-batch_install Github_CLI
-batch_install Preperation Final
+menu() {
 
-sudo apt install -y nvidia-driver
+        clear
+        
+        printf "\nPlease select your package and install : \n\n"
 
-reboot
+        for (( c=0; c<count; c++ ))  do
+
+                if [ "$c" == $1 ]
+                then
+
+                        printf "      > ";
+                else
+                        printf "        ";
+                fi
+
+
+                printf "[${statuses[c]}] ${descriptions[c]}\n";
+        done
+
+        printf "\n [i] Install [s] Select/Deselect [q] Quit\n"
+
+
+}
+  getkey(){
+
+    check
+    current=0
+    escape_char=$(printf "\u1b")
+
+    while true; do
+
+        menu $current      
+
+        read -rsn1 key
+        if [[ $key == $escape_char ]]; then
+                read -rsn2  key
+        fi
+
+        if [ $key == "s" ] &&  [ "${statuses[current]}" != "I" ] 
+        then
+
+            if [ "${statuses[current]}" == "S" ] 
+            then
+                statuses[current]=" "
+
+            else
+                statuses[current]="S"
+            fi              
+        fi
+
+
+        if [ $key == "[A" ] && [ $current -gt  0 ]
+        then
+                current=$((current - 1))
+        fi
+
+
+        if [ $key == "[B" ] && [ $(( $current + 1 )) -lt $count ]
+        then
+                current=$((current + 1))
+        fi
+
+        if [ $key == "q" ]
+        then
+            tput cnorm
+            clear
+            exit
+        fi
+
+        if [ $key == "i" ]
+        then
+            for (( c=0; c<count; c++ ))  do
+
+                if [ "${statuses[c]}" == "S"  ]
+                then
+                    batch_install ${modules[c]}
+                    statuses[c]="I"
+                fi
+            done
+        fi
+        
+    done
+}
+
+check() {
+
+    if [ -f "/bin/x11perf" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -f "/usr/bin/gcc" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+
+    statuses+=(" ")
+    
+    if [ -n "$(which alsamixer)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -n "$(which tmux)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -n "$(which nvidia-settings)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -n "$(which google-chrome)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -n "$(which tgwm)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    statuses+=(" ")
+      
+
+    if [ -n "$(which slim)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -n "$(which docker)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -n "$(which code)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    statuses+=(" ")
+    statuses+=(" ")
+
+    if [ -n "$(which fzf)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    if [ -n "$(which fancygit)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    statuses+=(" ")
+    statuses+=(" ")
+
+    if [ -n "$(which gh)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    statuses+=(" ")
+
+}
+
+
+tput civis
+
+batch_install Directories
+
+
+count=20
+statuses=()
+modules=(
+    Xorg 
+    Build
+    Libraries
+    Sound
+    Misc
+    Nvidia    
+    Google_Chrome
+    TGWM 
+    Hack_Fonts
+    Slim 
+    Docker 
+    VsCode 
+    Github_SSH_key 
+    Git 
+    Fuzzy_Finder 
+    FancyGit 
+    Custom_BashRC 
+    Custom_Profile 
+    Github_CLI 
+    Preperation
+)
+descriptions=(
+    "Install Xorg (X11) and its dependencies"     
+    "Install GCC and build-essential package"     
+    "Install required libraries for TGWM and etc"     
+    "Install sound driver and sound utils"     
+    "Install desktop widgets , optional utils"     
+    "Install Nvidia driver"         
+    "Install Google chrome"     
+    "Install TGWM"     
+    "Install Hack fonts"     
+    "Install Slim"     
+    "Install Docker"     
+    "Install Vscode"     
+    "Generate Github ssh key"     
+    "Configure default git settings"     
+    "Install Fuzzy finder"     
+    "Install Fancy git"     
+    "Deploy custom bash file"     
+    "Deploy custom profile file"     
+    "Install Github CLI"     
+    "Final preperation"     
+)
+
+
+getkey
