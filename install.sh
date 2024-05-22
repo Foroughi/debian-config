@@ -5,7 +5,9 @@ batch_install() {
     clear
     cd ~
     $1
-    
+
+    echo "$1 Done, Press any key to get back to main menu"
+    read
 }
 
 
@@ -124,7 +126,7 @@ Docker() {
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update  
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  
-    sudo usermod -aG docker $USER
+    
 }
 
 VsCode() {
@@ -188,7 +190,8 @@ Preperation() {
     pulseaudio --check
     pulseaudio -D
     sudo usermod -aG audio $USER
-    sudo usermod -aG video $USER    
+    sudo usermod -aG video $USER   
+    sudo usermod -aG docker $USER 
 
 }
 
@@ -244,15 +247,25 @@ menu() {
         fi
 
 
-        if [ $key == "[A" ] && [ $current -gt  0 ]
+        if [ $key == "[A" ] 
         then
                 current=$((current - 1))
+
+                if [ $current -lt  0 ]
+                then
+                    current=$((count - 1))
+                fi
         fi
 
 
-        if [ $key == "[B" ] && [ $(( $current + 1 )) -lt $count ]
+        if [ $key == "[B" ] 
         then
                 current=$((current + 1))
+
+                if [ $current -ge $count ]
+                then
+                    current=0
+                fi
         fi
 
         if [ $key == "q" ]
@@ -358,12 +371,12 @@ check() {
     statuses+=(" ")
     statuses+=(" ")
 
-    # if [ -n "$(which fzf)" ]
-    # then
-    #     statuses+=("I")
-    # else
-    #     statuses+=(" ")
-    # fi
+    if [ -n "$(which fzf)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
 
     if [ -n "$(which fancygit)" ]
     then
@@ -391,8 +404,6 @@ tput civis
 
 batch_install Directories
 
-
-
 statuses=()
 
 modules=(
@@ -410,13 +421,14 @@ modules=(
     VsCode 
     Github_SSH_key 
     Git 
-    #Fuzzy_Finder 
+    Fuzzy_Finder 
     FancyGit 
     Custom_BashRC 
     Custom_Profile 
     Github_CLI 
     Preperation
 )
+
 descriptions=(
     "Install Xorg (X11) and its dependencies"     
     "Install GCC and build-essential package"     
@@ -432,7 +444,7 @@ descriptions=(
     "Install Vscode"     
     "Generate Github ssh key"     
     "Configure default git settings"     
-    #"Install Fuzzy finder"     
+    "Install Fuzzy finder (DEPRECATED)"     
     "Install Fancy git"     
     "Deploy custom bash file"     
     "Deploy custom profile file"     
