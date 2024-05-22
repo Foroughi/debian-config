@@ -358,12 +358,12 @@ check() {
     statuses+=(" ")
     statuses+=(" ")
 
-    if [ -n "$(which fzf)" ]
-    then
-        statuses+=("I")
-    else
-        statuses+=(" ")
-    fi
+    # if [ -n "$(which fzf)" ]
+    # then
+    #     statuses+=("I")
+    # else
+    #     statuses+=(" ")
+    # fi
 
     if [ -n "$(which fancygit)" ]
     then
@@ -392,8 +392,9 @@ tput civis
 batch_install Directories
 
 
-count=20
+
 statuses=()
+
 modules=(
     Xorg 
     Build
@@ -409,7 +410,7 @@ modules=(
     VsCode 
     Github_SSH_key 
     Git 
-    Fuzzy_Finder 
+    #Fuzzy_Finder 
     FancyGit 
     Custom_BashRC 
     Custom_Profile 
@@ -431,13 +432,15 @@ descriptions=(
     "Install Vscode"     
     "Generate Github ssh key"     
     "Configure default git settings"     
-    "Install Fuzzy finder"     
+    #"Install Fuzzy finder"     
     "Install Fancy git"     
     "Deploy custom bash file"     
     "Deploy custom profile file"     
     "Install Github CLI"     
     "Final preperation"     
 )
+
+count=${#modules[@]}
 
 
 getkey
