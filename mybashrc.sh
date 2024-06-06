@@ -10,10 +10,14 @@ alias j='sudo journalctl -r && c'
 alias cj='c && j && c'
 alias csys='c && sys && c'
 
-fancygit --set-user-name " Ali"
-fancygit --disable-time
-fancygit --enable-bold-prompt
-fancygit --enable-double-line
+if [ $TERM != 'linux' ]; then
+
+    fancygit --set-user-name " Ali"
+    fancygit --disable-time
+    fancygit --enable-bold-prompt
+    fancygit --enable-double-line
+
+fi
 
 if [ "$TERM" == "tmux-256color" ]; then
 
