@@ -177,10 +177,10 @@ return {
         local lspconfig = require('lspconfig')
 
         local servers = {
-            "tsserver",
+            "ts_ls",
             "clangd"
         }
-        lspconfig.tsserver.setup {}
+        lspconfig.ts_ls.setup {}
         lspconfig.clangd.setup {
             cmd = { 'clangd', '--background-index', '--compile-commands-dir', 'D:/systemc/excersies/build' },
             init_options = {

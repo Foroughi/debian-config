@@ -14,7 +14,7 @@ local plugins = {
     require("plugin-indent"),
 
     --Tools
-    require("plugin-notify"),
+    --require("plugin-notify"),
     require("plugin-lualine"),
     require("plugin-telescope"),
     --require("plugin-dev-container"),

@@ -47,75 +47,54 @@ return {
     setup = function()
         local wk = require("which-key")
 
-        wk.register({      
-            
-            f = {
-                name = "Files",
-                f = { "<cmd>Telescope find_files<cr>", "Find a file in current directory" },
-                b = { "<cmd>Telescope buffers<cr>", "List of opened windows" },
-                g = { "<cmd>Telescope live_grep<cr>", "Find in files" },
-                d = { "<cmd>Telescope diagnostics<cr>", "View LSP diagnostics" },
-                h = { "<cmd>Telescope help_tags<cr>", "Help" },
-                t = { "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>" , "Show file tree"}
-            },
-            w = {
-                name = "Window navigation",
-                q = { "<cmd>q<cr>", "Close current window" },
-                Q = { "<cmd>quitall<cr>", "Close all" },
-                n = {
-                    name = "New file",
-                    n = { "<cmd>new<cr>", "Create new window" },
-                    v = { "<cmd>vnew<cr>", "Create new window vertically" },
-                    h = { "<cmd>hnew<cr>", "Create new window horizontally" },
-                },
-                s = {
-                    name = "Split",
-                    v = { "<cmd>vsplit<cr>", "Split vertically" },
-                    h = { "<cmd>split<cr>", "Split horizontally" }
-                },
-                r = {
-                    name = "Resize",
-                    h = { "<cmd>vert resize -10<cr>", "Resize to left" },
-                    l = { "<cmd>vert resize +10<cr>", "Resize to right" },
-                    j = { "<cmd>resize +5<cr>", "Resize to down" },
-                    k = { "<cmd>resize -5<cr>", "Resize to up" },
-                },
-                h = { "<cmd>wincmd h<cr>", "Move to right window" },
-                l = { "<cmd>wincmd l<cr>", "Move to left window" },
-                j = { "<cmd>wincmd j<cr>", "Move to down window" },
-                k = { "<cmd>wincmd k<cr>", "Move to top window" },
-            },
-            t = {
-                name = "Tab navigation",
-                n = { "<cmd>tabnew<cr>", "New tab" },
-                q = { "<cmd>q<cr>", "Close current tab" },
-                Q = { "<cmd>quitall<cr>", "Close all" },
-                h = { "<cmd>tabprev<cr>", "Move to previouse tab" },
-                l = { "<cmd>tabnext<cr>", "Move to next tab" },
-                --["<pageup>"] = { "<cmd>tabfirst<cr>", "Move to first tab" },
-                --["<pagedown>"] = { "<cmd>tablast<cr>", "Move to last tab" },
-            },
-            m = {
-                    name = "Diagnostics",
-                    D = "View declaration",
-                    d = "View definition",
-                    h = "Hover",
-                    i = "Go to implementation",                    
-                    w = {
-                        a = "Add workspace folder",
-                        r = "Remove workspace folder",
-                        l = "List workspace folders"
-                    },
-                    r = "Rename",
-                    R = "Refrences",
-                    e = "Floating diagnostics win",
-                    ["["] = "Prevoius diagnostic error",
-                    ["]"] = "Next diagnostic error",
-                    q = "Diagnostic error list"
-                    
-            }
-           
-        }, { prefix = "<leader>" })
+        wk.add({
+    { "<leader>f", group = "Files" },
+    { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "List of opened windows" },
+    { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "View LSP diagnostics" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find a file in current directory" },
+    { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find in files" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
+    { "<leader>ft", "<cmd>Telescope file_browser path=%:p:help |select_buffer=true<cr>|", desc = "Show file tree" },
+    { "<leader>m", group = "Diagnostics" },
+    { "<leader>mD", desc = "View declaration" },
+    { "<leader>mR", desc = "Refrences" },
+    { "<leader>m[", desc = "Prevoius diagnostic error" },
+    { "<leader>m]", desc = "Next diagnostic error" },
+    { "<leader>md", desc = "View definition" },
+    { "<leader>me", desc = "Floating diagnostics win" },
+    { "<leader>mh", desc = "Hover" },
+    { "<leader>mi", desc = "Go to implementation" },
+    { "<leader>mq", desc = "Diagnostic error list" },
+    { "<leader>mr", desc = "Rename" },
+    { "<leader>mwa", desc = "Add workspace folder" },
+    { "<leader>mwl", desc = "List workspace folders" },
+    { "<leader>mwr", desc = "Remove workspace folder" },
+    { "<leader>t", group = "Tab navigation" },
+    { "<leader>tQ", "<cmd>quitall<cr>", desc = "Close all" },
+    { "<leader>th", "<cmd>tabprev<cr>", desc = "Move to previouse tab" },
+    { "<leader>tl", "<cmd>tabnext<cr>", desc = "Move to next tab" },
+    { "<leader>tn", "<cmd>tabnew<cr>", desc = "New tab" },
+    { "<leader>tq", "<cmd>q<cr>", desc = "Close current tab" },
+    { "<leader>w", group = "Window navigation" },
+    { "<leader>wQ", "<cmd>quitall<cr>", desc = "Close all" },
+    { "<leader>wh", "<cmd>wincmd h<cr>", desc = "Move to right window" },
+    { "<leader>wj", "<cmd>wincmd j<cr>", desc = "Move to down window" },
+    { "<leader>wk", "<cmd>wincmd k<cr>", desc = "Move to top window" },
+    { "<leader>wl", "<cmd>wincmd l<cr>", desc = "Move to left window" },
+    { "<leader>wn", group = "New file" },
+    { "<leader>wnh", "<cmd>hnew<cr>", desc = "Create new window horizontally" },
+    { "<leader>wnn", "<cmd>new<cr>", desc = "Create new window" },
+    { "<leader>wnv", "<cmd>vnew<cr>", desc = "Create new window vertically" },
+    { "<leader>wq", "<cmd>q<cr>", desc = "Close current window" },
+    { "<leader>wr", group = "Resize" },
+    { "<leader>wrh", "<cmd>vert resize -10<cr>", desc = "Resize to left" },
+    { "<leader>wrj", "<cmd>resize +5<cr>", desc = "Resize to down" },
+    { "<leader>wrk", "<cmd>resize -5<cr>", desc = "Resize to up" },
+    { "<leader>wrl", "<cmd>vert resize +10<cr>", desc = "Resize to right" },
+    { "<leader>ws", group = "Split" },
+    { "<leader>wsh", "<cmd>split<cr>", desc = "Split horizontally" },
+    { "<leader>wsv", "<cmd>vsplit<cr>", desc = "Split vertically" },
+  })
     end
 
 }
