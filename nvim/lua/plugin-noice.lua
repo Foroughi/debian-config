@@ -69,7 +69,6 @@ return {
         message = {
           -- Messages shown by lsp servers
           enabled = true,
-          view = "notify",
           opts = {},
         },
         -- defaults for hover and signature help
@@ -84,6 +83,7 @@ return {
             win_options = { concealcursor = "n", conceallevel = 3 },
           },
         },
+
       },
 
       presets = {
@@ -116,21 +116,10 @@ return {
           },
         },
         cmdline_popupmenu = {
-          relative = "editor",
-          position = {
-            row = 13,
-            col = "50%",
-          },
           size = {
             width = 60,
             height = "auto",
             max_height = 20,
-          },
-          border = {
-            style = "rounded",
-          },
-          win_options = {
-            winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "FloatBorder" },
           },
         },
         hover = {
