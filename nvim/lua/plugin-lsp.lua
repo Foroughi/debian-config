@@ -178,9 +178,11 @@ return {
 
         local servers = {
             "ts_ls",
-            "clangd"
+            "clangd",
+            --"lua-language-server"
         }
         lspconfig.ts_ls.setup {}
+        --lspconfig.lua.setup {}
         lspconfig.clangd.setup {
             cmd = { 'clangd', '--background-index', '--compile-commands-dir', 'D:/systemc/excersies/build' },
             init_options = {

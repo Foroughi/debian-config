@@ -6,7 +6,7 @@ vim.keymap.set({'c' , 'i'}, '<C-k>', '<Up>', opts)
 vim.keymap.set({'c' , 'i'}, '<C-l>', '<Right>', opts)
 vim.keymap.set({'c' , 'i'}, '<C-h>', '<Left>', opts)
 
-
+vim.keymap.set({'c' , 'v' , 'c' , 'i'}, '<c-s>' , "<cmd>:write<cr>")
 
 -- to get used to vim key layout
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Up>', '<Nop>', opts)
