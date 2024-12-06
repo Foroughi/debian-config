@@ -4,7 +4,7 @@ show_time:false
 show_user_at_machine:true
 show_full_path:true
 show_rich_notification:true
-double_line:true
+double_line:false
 time_format:%H:%M:%S
 separator:
 ps2:➜
