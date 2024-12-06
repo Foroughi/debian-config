@@ -1,0 +1,6 @@
+mode
+*.sublime-*
+last_update_at
+config-override.sh
+tmpversions
+*.code-workspace
