@@ -66,6 +66,7 @@ return {
             { "<leader>th", "<cmd>tabprev<cr>", desc = "Move to previouse tab" },
             { "<leader>tl", "<cmd>tabnext<cr>", desc = "Move to next tab" },
             { "<leader>tn", "<cmd>tabnew<cr>", desc = "New tab" },
+            { "<leader>tf", "<cmd>Format<cr>", desc = "Format this tab" },
             { "<leader>tq", "<cmd>q<cr>", desc = "Close current tab" },
             { "<leader>w", group = "Window navigation" },
             { "<leader>wQ", "<cmd>quitall<cr>", desc = "Close all" },

@@ -2,6 +2,8 @@ local opt = vim.opt -- aliasing
 
 -- line number
 opt.number = true
+opt.relativenumber = true
+--opt.signcolumn = "number"
 
 -- tabs & intendation
 opt.tabstop = 4
