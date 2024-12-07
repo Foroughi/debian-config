@@ -92,7 +92,14 @@ return {
 			{ "<leader>wsh", "<cmd>split<cr>", desc = "Split horizontally" },
 			{ "<leader>wsv", "<cmd>vsplit<cr>", desc = "Split vertically" },
 			{ "<leader>p", desc = "Paste from system clipboard" },
-			{ "<leader>y", desc = "Copy to system clipboard" },
+			{ "<leader>d", group = "Debug mode" },
+			{ "<leader>dc", desc = "Start/Continue" },
+			{ "<leader>dt", desc = "Terminate" },
+			{ "<leader>dh", desc = "Hover to get more info" },
+			{ "<leader>db", desc = "Toggle breakpoint" },
+			{ "<leader>de", desc = "Check value" },
+			{ "<leader>ds", desc = "Watches" },
+			{ "<leader>M", "<cmd>messages<cr>", desc = "View lastest messages" },
 		})
 	end,
 }

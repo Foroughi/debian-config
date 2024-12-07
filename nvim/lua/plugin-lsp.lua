@@ -37,7 +37,6 @@ local setup_tools = function()
 	require("luasnip.loaders.from_vscode").lazy_load()
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 	local cmp = require("cmp")
-	local notify = require("notify").async
 	cmp.setup({
 		sources = {
 
@@ -106,7 +105,7 @@ local setup_tools = function()
 			local client = vim.lsp.get_client_by_id(client_id)
 			local bufnr = args.buf
 			if not client.server_capabilities.documentFormattingProvider then
-				notify("No formatter detected")
+				--notify("No formatter detected")
 				return
 			end
 
@@ -163,7 +162,7 @@ return {
 				},
 			},
 		})
-		lspconfig.lua.setup({})
+		lspconfig.lua_ls.setup({})
 		lspconfig.clangd.setup({
 			cmd = { "clangd", "--background-index", "--compile-commands-dir", "D:/systemc/excersies/build" },
 			init_options = {

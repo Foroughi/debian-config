@@ -12,7 +12,7 @@ local plugins = {
 	require("plugin-indent"),
 	require("plugin-formatter"),
 	--Tools
-	require("plugin-notify"),
+	--require("plugin-notify"),
 	require("plugin-lualine"),
 	require("plugin-telescope"),
 	--require("plugin-dev-container"),
@@ -27,6 +27,8 @@ local plugins = {
 	require("plugin-lsp"),
 	require("plugin-treesitter"),
 	--require("plugin-trouble"),
+	require("plugin-dap"),
+	--require("plugin-dap-ui"),
 }
 
 local getPlugins = function()
@@ -64,3 +66,4 @@ require("lazy").setup(getPlugins(), opts)
 for _, plugin in ipairs(plugins) do
 	plugin.setup()
 end
+
