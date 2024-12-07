@@ -21,9 +21,10 @@ opt.termguicolors = true
 
 opt.swapfile = false
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.api.nvim_set_option("clipboard", "unnamedplus")
 opt.mouse = ""
 
 opt.wrap = false
 
-
+vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
