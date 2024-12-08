@@ -3,7 +3,7 @@ local plugins = {
 	--Thems
 	require("plugin-noice"),
 	require("plugin-theme"),
-	--require("plugin-dressing"),
+	require("plugin-dressing"),
 	--require("plugin-catppuccin"),
 
 	--Editor
@@ -12,7 +12,7 @@ local plugins = {
 	require("plugin-indent"),
 	require("plugin-formatter"),
 	--Tools
-	--require("plugin-notify"),
+	require("plugin-notify"),
 	require("plugin-lualine"),
 	require("plugin-telescope"),
 	--require("plugin-dev-container"),

@@ -9,23 +9,17 @@ return {
 		end,
 		config = true,
 		opts = {
-			preset = "classic",
-			key_labels = {
-
-				["<leader>"] = "SPACE",
-				["<space>"] = "SPACE",
-				["<esc>"] = "ESC",
-				["<CR>"] = "ENTER",
-				["<bs>"] = "BS",
-				["<tab>"] = "TAB",
-			},
-			window = {
-				border = "single", -- none, single, double, shadow
-				position = "bottom", -- bottom, top
-				margin = { 0, 1, 1, 0.75 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+			preset = "helix",
+			win = {
+				--margin = { 0, 1, 1, 0.75 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
 				padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
-				winblend = 20, -- value between 0-100 0 for fully opaque and 100 for fully transparent
 				zindex = 1000, -- positive value to position WhichKey above other floating windows.
+				bo = {
+					-- bg = "#ffffff",
+				},
+				wo = {
+					winblend = 20,
+				},
 			},
 			layout = {
 				height = { min = 4, max = 65 }, -- min and max height of the columns
@@ -33,7 +27,9 @@ return {
 				spacing = 0, -- spacing between columns
 				align = "center", -- align columns left, center or right
 			},
-			ignore_missing = false,
+			filter = function(mapping)
+				return true
+			end,
 		},
 	},
 	setup = function()
@@ -92,6 +88,7 @@ return {
 			{ "<leader>wsh", "<cmd>split<cr>", desc = "Split horizontally" },
 			{ "<leader>wsv", "<cmd>vsplit<cr>", desc = "Split vertically" },
 			{ "<leader>p", desc = "Paste from system clipboard" },
+			{ "<leader>y", desc = "Copy to system clipboard" },
 			{ "<leader>d", group = "Debug mode" },
 			{ "<leader>dc", desc = "Start/Continue" },
 			{ "<leader>dt", desc = "Terminate" },
@@ -100,6 +97,12 @@ return {
 			{ "<leader>de", desc = "Check value" },
 			{ "<leader>ds", desc = "Watches" },
 			{ "<leader>M", "<cmd>messages<cr>", desc = "View lastest messages" },
+			{ "<leader>T", "<cmd>Telescope treesitter<cr>", desc = "View Tree sitter" },
+			{ "<leader>g", group = "Git" },
+			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "View Commits" },
+			{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "View/Switch branch" },
+			{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "View current status" },
+			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "View Commits" },
 		})
 	end,
 }

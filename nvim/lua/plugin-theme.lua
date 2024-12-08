@@ -41,6 +41,45 @@ return {
 			---@param highlights Highlights
 			---@param colors ColorScheme
 			on_highlights = function(hl, c)
+				local prompt = "#2d3149"
+				hl.TelescopeNormal = {
+					bg = c.bg_dark,
+					fg = c.fg_dark,
+				}
+				hl.TelescopeBorder = {
+					--bg = "#2d3149",
+					fg = "#1E88E5",
+				}
+				hl.TelescopePromptNormal = {
+					--bg = prompt,
+				}
+				hl.TelescopePromptBorder = {
+					--bg = prompt,
+					fg = "#1E88E5",
+				}
+				hl.TelescopePromptTitle = {
+					--bg = prompt,
+					--fg = prompt,
+				}
+				hl.TelescopePreviewTitle = {
+					--bg = c.bg_dark,
+					--fg = c.bg_dark,
+				}
+				hl.TelescopeResultsTitle = {
+					--bg = c.bg_dark,
+					--fg = c.bg_dark,
+				}
+				hl.WhichKeyNormal = {
+					bg = prompt,
+				}
+				hl.WhichKeyTitle = {
+					fg = "#1E88E5",
+					bg = prompt,
+				}
+				hl.WhichKeyBorder = {
+					bg = prompt,
+					fg = "#1E88E5",
+				}
 			end,
 		})
 
