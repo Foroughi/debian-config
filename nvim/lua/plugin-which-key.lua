@@ -102,7 +102,6 @@ return {
 			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "View Commits" },
 			{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "View/Switch branch" },
 			{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "View current status" },
-			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "View Commits" },
 		})
 	end,
 }
