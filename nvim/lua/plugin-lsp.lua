@@ -158,7 +158,6 @@ return {
 		lspconfig.ts_ls.setup({
 			init_options = {
 
-				disableSuggestions = true,
 				preferences = {
 					disableSuggestions = true,
 				},

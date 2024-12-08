@@ -80,6 +80,26 @@ return {
 					bg = prompt,
 					fg = "#1E88E5",
 				}
+				hl.BufferLineSeparatorSelected = {
+					bg = "#1A1B26",
+					fg = "#16161E",
+				}
+				hl.BufferLineSeparator = {
+					fg = "#16161e",
+					bg = "#1a1b26",
+				}
+				-- hl.BufferLineDevIcon = {
+				-- 	bg = "#2D3149",
+				-- }
+				-- hl.BufferLineBackground = {
+				-- 	bg = "#2D3149",
+				-- }
+				hl.BufferLineFill = {
+					bg = "#16161E",
+				}
+				-- hl.BufferLineTab = {
+				-- 	bg = "#2d3149",
+				-- }
 			end,
 		})
 
