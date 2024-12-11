@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. ~/.config/.fancy-git/prompt.sh
-
+#. ~/.config/.fancy-git/prompt.sh
+. ~/.config/mybash/mybash.sh
 alias l='ls -ls -a'
 alias h='history'
 alias c='clear && neofetch'
