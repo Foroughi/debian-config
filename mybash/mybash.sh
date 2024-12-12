@@ -1,3 +1,4 @@
+space="⠀"
 getTagStarter (){
     [ -z "$1" ] || echo ''
 }
@@ -12,7 +13,7 @@ wrapTextWithColor() {
 
 drawTag() {
     local len=${#1}
-    echo "$(wrapTextWithColor "\$(getTagStarter $1)" $3 0)$(wrapTextWithColor $1 $2 $3)$(wrapTextWithColor "\$(getTagEnder $1)" $3 0)"
+    echo "$space$(wrapTextWithColor "\$(getTagStarter $1)" $3 0)$(wrapTextWithColor $1 $2 $3)$(wrapTextWithColor "\$(getTagEnder $1)" $3 0)"
 }
 
 getGitTag(){
@@ -28,7 +29,8 @@ setPS1(){
 
     # Draw Current path
     local currentDir=$(pwd)
-    t=$((t + ${#currentDir} + 2))
+    currentDir="${currentDir/$HOME/"~"}"
+    t=$((t + ${#currentDir} + 3))
     text+=$(drawTag $currentDir 15 27)
 
     # Draw Middle spaces
@@ -38,14 +40,14 @@ setPS1(){
     local currentBranch=$(getGitTag)
     if [ "" != "$currentBranch" ]
     then
-        t=$((t + ${#currentBranch} + 3))
-        text+=$(drawTag "$(getGitTag)" 255 160)
+        t=$((t + ${#currentBranch} + 5))
+        text+=$(drawTag "$space$(getGitTag)" 255 160)
     fi
 
     if [[ -n $FLOX_RUNTIME_DIR ]]; then
         flox=$FLOX_ENV_DESCRIPTION
-        t=$((t + ${#flox} + 3))
-        text+=$(drawTag $flox 0 6)
+        t=$((t + ${#flox} + 5))
+        text+=$(drawTag "󰨞$space$flox" 0 6)
     fi
 
     # Draw Ending
