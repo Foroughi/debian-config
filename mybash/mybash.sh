@@ -24,8 +24,9 @@ getTerminalWidth(){
     tput cols
 }
 setPS1(){
-    t=2;
+    t=3;
     text="\n╭─"
+    # text=""
 
     # Draw Current path
     local currentDir=$(pwd)
@@ -51,7 +52,7 @@ setPS1(){
     fi
 
     # Draw Ending
-    text+="\n╰─ "
+    text+="\n│\n"
 
     # Draw Spaces
     local spaces=""
@@ -64,4 +65,6 @@ setPS1(){
     PS1="${text//###/$spaces}"
 }
 
+# bind "set vi-cmd-mode-string "\1\e[34;1m\2CMD\1\e[0m\2""
+# bind "set vi-ins-mode-string "\1\e[34;1m\2INS\1\e[0m\2""
 PROMPT_COMMAND='setPS1'
