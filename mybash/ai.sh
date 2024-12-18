@@ -84,7 +84,7 @@ process_response() {
     local command=$(echo "$response" | jq -r '.data[0].content[0].text.value | fromjson | .command // empty')
     local is_completed=$(echo "$response" | jq -r '.data[0].content[0].text.value | fromjson | .isCompleted')
 
-    # echo $response
+     echo $response
 
     # If no command is returned, exit
     if [ -z "$command" ]; then

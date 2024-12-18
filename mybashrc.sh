@@ -16,7 +16,7 @@ alias csys='c && sys && c'
 alias gs='git status'
 alias gp='git push'
 alias gc='git commit -a -m $1'
-alias ai='. ~/.config/mybash/ai.sh $@'
+alias ai='~/.config/mybash/ai.sh $@'
 if [ "$TERM" == "tmux-256color" ]; then
 
     neofetch
