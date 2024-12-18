@@ -2,7 +2,9 @@
 
 #. ~/.config/.fancy-git/prompt.sh
 . ~/.config/mybash/mybash.sh
-alias l='ls -ls -A'
+alias ll='lsd -l -A'
+alias b='btop'
+alias l='lsd -A'
 alias h='history'
 alias c='clear && neofetch'
 alias r='cd ~'
@@ -14,6 +16,7 @@ alias csys='c && sys && c'
 alias gs='git status'
 alias gp='git push'
 alias gc='git commit -a -m $1'
+alias ai='. ~/.config/mybash/ai.sh $@'
 if [ "$TERM" == "tmux-256color" ]; then
 
     neofetch
