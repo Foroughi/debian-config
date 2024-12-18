@@ -84,7 +84,7 @@ process_response() {
     local command=$(echo "$response" | jq -r '.data[0].content[0].text.value | fromjson | .command // empty')
     local is_completed=$(echo "$response" | jq -r '.data[0].content[0].text.value | fromjson | .isCompleted')
 
-     echo $response
+    echo $response
 
     # If no command is returned, exit
     if [ -z "$command" ]; then
@@ -101,6 +101,9 @@ process_response() {
     # If isCompleted is false, send the output back to the assistant
     if [ "$is_completed" = "false" ]; then
         process_response "$command_output"
+    elif [ -z "$2" ]; then
+        process_response "$command_output" true
+
     fi
 }
 
