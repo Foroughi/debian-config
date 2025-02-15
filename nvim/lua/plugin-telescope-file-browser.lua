@@ -5,7 +5,10 @@ return {
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
 	setup = function()
+		local actions = require("telescope.actions")
 		local fb_actions = require("telescope").extensions.file_browser.actions
+		local builtin = require("telescope.builtin")
+		local action_state = require("telescope.actions.state")
 		require("telescope").setup({
 			extensions = {
 				file_browser = {
@@ -15,6 +18,38 @@ return {
 					initial_mode = "normal",
 					mappings = {
 						["n"] = {
+							["<CR>"] = function(prompt_bufnr)
+								local selection = action_state.get_selected_entry()
+								actions.close(prompt_bufnr)
+								if selection and selection.path then
+									if vim.fn.isdirectory(selection.path) == 1 then
+										builtin.find_files({ cwd = selection.path })
+									else
+										vim.cmd("tabnew " .. selection.path)
+									end
+								end
+							end,
+							["<C-c>"] = fb_actions.create_from_prompt,
+							["<C-r>"] = fb_actions.rename,
+							["<C-x>"] = fb_actions.move,
+							["<C-y>"] = fb_actions.copy,
+							["<C-d>"] = fb_actions.remove,
+							["<C-p>"] = fb_actions.goto_parent_dir,
+							["<C-w>"] = fb_actions.goto_cwd,
+							["<C-h>"] = fb_actions.toggle_hidden,
+						},
+						["i"] = {
+							["<CR>"] = function(prompt_bufnr)
+								local selection = action_state.get_selected_entry()
+								actions.close(prompt_bufnr)
+								if selection and selection.path then
+									if vim.fn.isdirectory(selection.path) == 1 then
+										builtin.find_files({ cwd = selection.path })
+									else
+										vim.cmd("tabnew " .. selection.path)
+									end
+								end
+							end,
 							["<C-c>"] = fb_actions.create_from_prompt,
 							["<C-r>"] = fb_actions.rename,
 							["<C-x>"] = fb_actions.move,

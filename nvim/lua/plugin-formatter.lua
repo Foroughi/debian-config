@@ -49,7 +49,20 @@ return {
 					require("formatter.filetypes.javascript").prettier,
 				},
 				typescript = {
-					require("formatter.filetypes.typescript").prettier,
+					-- require("formatter.filetypes.typescript").prettier,
+					function()
+						return {
+							exe = "prettier",
+							args = {
+								"--tab-width",
+								"4",
+								"--stdin-filepath",
+								util.escape_path(util.get_current_buffer_file_path()),
+							},
+							stdin = true,
+							try_node_modules = true,
+						}
+					end,
 				},
 				-- Use the special "*" filetype for defining formatter configurations on
 				-- any filetype
