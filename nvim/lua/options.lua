@@ -29,3 +29,10 @@ opt.wrap = false
 vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.opt.background = "dark"
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argc() == 0 then
+			require("telescope").extensions.file_browser.file_browser()
+		end
+	end,
+})
