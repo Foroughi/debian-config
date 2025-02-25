@@ -43,15 +43,34 @@ create_run() {
         -H "Authorization: Bearer $API_KEY" \
         -H "Content-Type: application/json" \
         -H "OpenAI-Beta: assistants=v2" \
-        -d "{\"assistant_id\": \"$ASSISTANT_ID\"}"
+        -d "{\"assistant_id\": \"$ASSISTANT_ID\"}" | jq -r '.id'
         # -d "{\"message_id\": \"$message_id\", \"assistant_id\": \"$ASSISTANT_ID\"}"
 }
 
+wait_for_run_completion() {
+    local thread_id="$1"
+    local run_id="$2"
 
+    while true; do
+        status=$(curl -s -X GET "$API_BASE_URL/threads/$thread_id/runs/$run_id" \
+            -H "Authorization: Bearer $API_KEY" \
+            -H "Content-Type: application/json" \
+            -H "OpenAI-Beta: assistants=v2" | jq -r '.status')
+
+        if [[ "$status" == "completed" ]]; then
+            break
+        elif [[ "$status" == "failed" || "$status" == "cancelled" ]]; then
+            echo "Run failed or was cancelled"
+            return 1
+        fi
+
+        sleep 2  # Wait before checking again
+    done
+}
 # Function to get the latest message from the thread
 get_latest_message() {
     local thread_id="$1"
-
+    local run_id="$2"
     curl -s -X GET "$API_BASE_URL/threads/$thread_id/messages" \
         -H "Authorization: Bearer $API_KEY" \
         -H "Content-Type: application/json" \
@@ -76,8 +95,9 @@ process_response() {
     fi
 
     # Create the first run using the message ID
-    run_response=$(create_run "$thread_id" "$message_id")
-    sleep 5
+    run_id=$(create_run "$thread_id" "$message_id")
+
+    wait_for_run_completion "$thread_id" "$run_id"
 
     local response=$(get_latest_message "$thread_id")
     # Extract the command, isCompleted, and summary fields from the JSON response
@@ -93,7 +113,7 @@ process_response() {
         exit 1
     fi
 
-    # echo "Running command(s): $command"
+    #echo "Running command(s): $command"
 
     # Run the command(s) and capture the output
     local command_output
@@ -104,8 +124,8 @@ process_response() {
     # If isCompleted is false, send the output back to the assistant
     if [ "$is_completed" = "false" ]; then
         process_response "$command_output"
-    elif [ -z "$2" ]; then
-        process_response "$command_output" true
+    #elif [ -z "$2" ]; then
+        #process_response "$command_output" true
 
     fi
 }
