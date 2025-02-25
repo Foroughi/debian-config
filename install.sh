@@ -6,55 +6,55 @@ batch_install() {
     cd ~
     $1
 
-    echo "$1 Done, Press any key to get back to main menu"
-    read
+    #echo "$1 Done, Press any key to get back to main menu"
+    #read
 }
 
 
-Xorg() {    
-        
-    sudo apt install -y xorg   
+Xorg() {
+
+    sudo apt install -y xorg
 
 }
 
-Build() {    
-        
-    sudo apt install -y cmake build-essential   
+Build() {
+
+    sudo apt install -y cmake build-essential
 
 }
 
-Libraries() {    
-        
-    sudo apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev   
+Libraries() {
+
+    sudo apt install -y libnotify-bin libimlib2-dev libncurses5-dev libx11-dev libxdamage-dev libxft-dev libxinerama-dev libxml2-dev libxext-dev libcurl4-openssl-dev liblua5.3-dev libgoogle-glog-dev
 
 }
 
-Sound() {    
-        
-    sudo apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek  
+Sound() {
+
+    sudo apt install -y alsa-utils pulseaudio pavucontrol firmware-realtek
 
 }
 
-Misc() {    
-    
-    sudo apt install -y lsd btop curl ranger rofi unzip picom nitrogen ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
-    
+Misc() {
+
+    sudo apt install -y  tree lsd btop curl ranger rofi unzip picom nitrogen ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
+
 }
 
 
-Nvidia() {    
+Nvidia() {
 
-    sudo apt install -y software-properties-common   
-    sudo add-apt-repository -y contrib   
-    sudo add-apt-repository -y non-free   
-    sudo apt update   
+    sudo apt install -y software-properties-common
+    sudo add-apt-repository -y contrib
+    sudo add-apt-repository -y non-free
+    sudo apt update
     sudo apt install -y nvidia-driver
-             
+
 }
 
 
 
-Directories() { 
+Directories() {
 
     mkdir ~/.fonts
     mkdir ~/downloads
@@ -63,23 +63,23 @@ Directories() {
 }
 
 
-Google_Chrome() { 
+Google_Chrome() {
 
     cd ~/downloads
     wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install -y ./google-chrome-stable_current_amd64.deb  
-    rm google-chrome-stable_current_amd64.deb    
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+    rm google-chrome-stable_current_amd64.deb
 
 }
 
-TGWM() { 
+TGWM() {
 
     sudo mkdir -p /usr/share/xsessions/
     sudo touch /usr/share/xsessions/tgwm.desktop
     cd ~/projects
     git clone -q https://github.com/Foroughi/tgwm.git
     cd tgwm
-    sudo make install 
+    sudo make install
 
     echo [Desktop Entry]  | sudo tee -a /usr/share/xsessions/tgwm.desktop
     echo Name=TGWM  | sudo tee -a /usr/share/xsessions/tgwm.desktop
@@ -90,9 +90,9 @@ TGWM() {
 
 }
 
-FancyGit() { 
+FancyGit() {
 
-    curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh        
+    curl -sS https://raw.githubusercontent.com/diogocavilha/fancy-git/master/install.sh | sh
 }
 
 Hack_Fonts() {
@@ -102,11 +102,11 @@ Hack_Fonts() {
     unzip Hack.zip
     cp *.ttf ~/.fonts
     rm -rf *.ttf
-    rm -rf Hack.zip    
+    rm -rf Hack.zip
 }
 
 Slim() {
-    sudo apt install slim -y  
+    sudo apt install slim -y
     sudo dpkg-reconfigure slim
     cd ~/downloads
     git clone -q https://github.com/adi1090x/slim_themes.git
@@ -124,19 +124,19 @@ Docker() {
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt-get update  
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  
-    
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 }
 
 VsCode() {
 
-    
+
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
     sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
     echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
     rm -f packages.microsoft.gpg
-    
+
     sudo apt update
     sudo apt install code # or code-insiders
 
@@ -151,14 +151,14 @@ Git() {
     git config --global user.name "Ali Foroughi"
     git config --global pull.rebase true
     git config --global init.defaultBranch master
-    
+
 }
 
 Fuzzy_Finder() {
-		
+
     git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     cd ~/.fzf
-    ./install  
+    ./install
 }
 
 Custom_BashRC() {
@@ -180,25 +180,35 @@ Github_CLI() {
     && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
     && sudo apt update  \
-    && sudo apt install gh -y 
+    && sudo apt install gh -y
 
 }
 
 Preperation() {
 
-    fc-cache -f -v 
+    fc-cache -f -v
     pulseaudio --check
     pulseaudio -D
     sudo usermod -aG audio $USER
-    sudo usermod -aG video $USER   
-    sudo usermod -aG docker $USER 
+    sudo usermod -aG video $USER
+    sudo usermod -aG docker $USER
 
 }
 
+Neovim(){
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+    sudo rm -rf /opt/nvim
+    sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+    echo export PATH="$PATH:/opt/nvim-linux-x86_64/bin" >> ~/.bashrc
+}
+
+Flox(){
+    echp 'Please Use their website for now'
+}
 menu() {
 
         clear
-        
+
         printf "\nPlease select your package and install : \n\n"
 
         for (( c=0; c<count; c++ ))  do
@@ -227,27 +237,27 @@ menu() {
 
     while true; do
 
-        menu $current      
+        menu $current
 
         read -rsn1 key
         if [[ $key == $escape_char ]]; then
                 read -rsn2  key
         fi
 
-        if [ $key == "s" ] &&  [ "${statuses[current]}" != "I" ] 
+        if [ $key == "s" ] &&  [ "${statuses[current]}" != "I" ]
         then
 
-            if [ "${statuses[current]}" == "S" ] 
+            if [ "${statuses[current]}" == "S" ]
             then
                 statuses[current]=" "
 
             else
                 statuses[current]="S"
-            fi              
+            fi
         fi
 
 
-        if [ $key == "[A" ] 
+        if [ $key == "[A" ]
         then
                 current=$((current - 1))
 
@@ -258,7 +268,7 @@ menu() {
         fi
 
 
-        if [ $key == "[B" ] 
+        if [ $key == "[B" ]
         then
                 current=$((current + 1))
 
@@ -286,7 +296,7 @@ menu() {
                 fi
             done
         fi
-        
+
     done
 }
 
@@ -308,7 +318,7 @@ check() {
 
 
     statuses+=(" ")
-    
+
     if [ -n "$(which alsamixer)" ]
     then
         statuses+=("I")
@@ -345,7 +355,7 @@ check() {
     fi
 
     statuses+=(" ")
-      
+
 
     if [ -n "$(which slim)" ]
     then
@@ -397,6 +407,25 @@ check() {
 
     statuses+=(" ")
 
+    statuses+=(" ")
+
+    if [ -n "$(which flox)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    statuses+=(" ")
+
+    if [ -n "$(which nvim)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    statuses+=(" ")
 }
 
 
@@ -407,49 +436,53 @@ batch_install Directories
 statuses=()
 
 modules=(
-    Xorg 
+    Xorg
     Build
     Libraries
     Sound
     Misc
-    Nvidia    
+    Nvidia
     Google_Chrome
-    TGWM 
+    TGWM
     Hack_Fonts
-    Slim 
-    Docker 
-    VsCode 
-    Github_SSH_key 
-    Git 
-    Fuzzy_Finder 
-    FancyGit 
-    Custom_BashRC 
-    Custom_Profile 
-    Github_CLI 
+    Slim
+    Docker
+    VsCode
+    Github_SSH_key
+    Git
+    Fuzzy_Finder
+    FancyGit
+    Custom_BashRC
+    Custom_Profile
+    Github_CLI
     Preperation
+    Flox
+    Neovim
 )
 
 descriptions=(
-    "Install Xorg (X11) and its dependencies"     
-    "Install GCC and build-essential package"     
-    "Install required libraries for TGWM and etc"     
-    "Install sound driver and sound utils"     
-    "Install desktop widgets , optional utils"     
-    "Install Nvidia driver"         
-    "Install Google chrome"     
-    "Install TGWM"     
-    "Install Hack fonts"     
-    "Install Slim"     
-    "Install Docker"     
-    "Install Vscode"     
-    "Generate Github ssh key"     
-    "Configure default git settings"     
-    "Install Fuzzy finder (DEPRECATED)"     
-    "Install Fancy git"     
-    "Deploy custom bash file"     
-    "Deploy custom profile file"     
-    "Install Github CLI"     
-    "Final preperation"     
+    "Install Xorg (X11) and its dependencies"
+    "Install GCC and build-essential package"
+    "Install required libraries for TGWM and etc"
+    "Install sound driver and sound utils"
+    "Install desktop widgets , optional utils"
+    "Install Nvidia driver"
+    "Install Google chrome"
+    "Install TGWM"
+    "Install Hack fonts (DEPRECATED)"
+    "Install Slim (DEPRECATED)"
+    "Install Docker"
+    "Install Vscode (DEPRECATED)"
+    "Generate Github ssh key"
+    "Configure default git settings"
+    "Install Fuzzy finder"
+    "Install Fancy git (DEPRECATED)"
+    "Deploy custom bash file"
+    "Deploy custom profile file"
+    "Install Github CLI"
+    "Final preperation"
+    "Install Flox"
+    "Install Neovim"
 )
 
 count=${#modules[@]}
