@@ -42,13 +42,13 @@ setPS1(){
     if [ "" != "$currentBranch" ]
     then
         t=$((t + ${#currentBranch} + 5))
-        text+=$(drawTag "$space$(getGitTag)" 255 160)
+        text+=$(drawTag "$space$(getGitTag)" 255 160)
     fi
 
     if [[ -n $FLOX_RUNTIME_DIR ]]; then
         flox=$FLOX_ENV_DESCRIPTION
         t=$((t + ${#flox} + 5))
-        text+=$(drawTag "󰨞$space$flox" 0 6)
+        text+=$(drawTag "💻$space$flox" 0 6)
     fi
 
     # Draw Ending
@@ -62,7 +62,7 @@ setPS1(){
     done
 
 
-    PS1="${text//###/$spaces}"
+    PS1="${text//###/$spaces}╰─ "
 }
 
 # bind "set vi-cmd-mode-string "\1\e[34;1m\2CMD\1\e[0m\2""

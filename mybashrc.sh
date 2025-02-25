@@ -25,7 +25,7 @@ fi
 
 complete -cf sudo
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 eval "$(direnv hook bash)"
@@ -46,3 +46,4 @@ _fzf_comprun() {
     *)            fzf --tmux --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }
+eval "$(fzf --bash)"

@@ -37,7 +37,7 @@ Sound() {
 
 Misc() {    
     
-    sudo apt install -y curl ranger rofi unzip picom nitrogen htop ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
+    sudo apt install -y lsd btop curl ranger rofi unzip picom nitrogen ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
     
 }
 
