@@ -191,10 +191,7 @@ Preperation() {
     pulseaudio -D
     sudo usermod -aG audio $USER
     sudo usermod -aG video $USER
-    sudo usermod -aG docker $USER
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-
+    sudo usermod -aG docker $USER  
 }
 
 Neovim(){
