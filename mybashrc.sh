@@ -25,9 +25,9 @@ fi
 
 complete -cf sudo
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export PATH="$PATH:/opt/nvim-linux64/bin"
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -d ~/.fzf ] && export PATH="$PATH:~/.fzf/bin"
+#export PATH="$PATH:/opt/nvim-linux64/bin"
 eval "$(direnv hook bash)"
 
 export FZF_COMPLETION_TRIGGER='\'
