@@ -2,7 +2,7 @@ google-chrome/**
 dconf/**
 menus/**
 mimeapps.list
-pavucontrol.ini
+#pavucontrol.ini
 Code/**
 pulse/**
 gh/**
