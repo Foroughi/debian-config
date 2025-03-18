@@ -16,6 +16,7 @@ alias csys='c && sys && c'
 alias gs='git status'
 alias gp='git push'
 alias gc='git commit -a -m $1'
+alias sb='source ~/.bashrc && c'
 alias ai='~/.config/assistant/run.sh'
 if [ "$TERM" == "tmux-256color" ]; then
 
@@ -30,7 +31,7 @@ complete -cf sudo
 #export PATH="$PATH:/opt/nvim-linux64/bin"
 eval "$(direnv hook bash)"
 
-export FZF_COMPLETION_TRIGGER='\'
+export FZF_COMPLETION_TRIGGER='>'
 export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_COMPLETION_PATH_OPTS='--walker file,dir,follow,hidden'
 export FZF_COMPLETION_DIR_OPTS='--walker dir,follow'
@@ -38,12 +39,12 @@ export FZF_COMPLETION_DIR_OPTS='--walker dir,follow'
 _fzf_comprun() {
   local command=$1
   shift
-
   case "$command" in
     cd)           fzf --tmux --preview 'tree -C {} | head -200'   "$@" ;;
     export|unset) fzf --tmux --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --tmux --preview 'dig {}'                   "$@" ;;
-    *)            fzf --tmux --preview 'bat -n --color=always {}' "$@" ;;
+    h)            h | fzf --tmux                                  "$@" ;;
+    *)            fzf --tmux --preview 'cat -n {}' "$@" ;;
   esac
 }
 #eval "$(fzf --bash)"
