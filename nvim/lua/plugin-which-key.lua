@@ -115,12 +115,12 @@ return {
 				desc = "Buffer Diagnostics (Trouble)",
 			},
 			{
-				"<leader>cs",
+				"<leader>xS",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
 				desc = "Symbols (Trouble)",
 			},
 			{
-				"<leader>cl",
+				"<leader>xl",
 				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
 				desc = "LSP Definitions / references / ... (Trouble)",
 			},
@@ -138,6 +138,23 @@ return {
 				"<leader>xQ",
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
+			},
+			{ "<leader>c", group = "ChatGPT" },
+			{
+				"<leader>cc",
+				"<cmd>ChatGPT<cr>",
+				desc = "ChatGPT",
+			},
+			{
+				"<leader>cE",
+				"<cmd>ChatGPT<cr>",
+				desc = "Ask ChatGPT to explain",
+                mode = { "n", "v" }
+			},
+			{
+				"<leader>ce",
+				"<cmd>ChatGPTEditWithInstruction<cr>",
+				desc = "Edit with ChatGPT",
 			},
 		})
 	end,
