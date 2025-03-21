@@ -46,3 +46,4 @@ vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<c-Delete>', '<Nop>', opts)
 
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Insert>', '<Nop>', opts)
 vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Delete>', '<Nop>', opts)
+vim.keymap.set({'n' , 'v' } , '<Esc><Esc>' , ":noh<CR>" , {noremap = true, silent = true})
