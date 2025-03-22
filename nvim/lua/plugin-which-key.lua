@@ -156,6 +156,12 @@ return {
 				"<cmd>ChatGPTEditWithInstruction<cr>",
 				desc = "Edit with ChatGPT",
 			},
+			{
+				"<leader>gl",
+				"<cmd>LazyGit<cr>",
+				desc = "Lazy Git",
+                mode = {"n"}
+			}
 		})
 	end,
 }
