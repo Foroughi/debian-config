@@ -8,7 +8,7 @@ local plugins = {
 
 	--Editor
 	require("plugin-gitsign"),
-	require("plugin-bufferline"),
+	--require("plugin-bufferline"),
 	require("plugin-indent"),
 	require("plugin-formatter"),
 	--Tools
