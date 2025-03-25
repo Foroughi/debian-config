@@ -18,7 +18,7 @@ opt.smartcase = true
 -- appearance
 opt.background = "dark"
 opt.termguicolors = true
-
+opt.showtabline = 0
 opt.swapfile = false
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
