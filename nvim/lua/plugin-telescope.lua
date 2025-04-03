@@ -16,7 +16,7 @@ return {
 			pickers = {
 				live_grep = {
 					initial_mode = "normal",
-					file_ignore_patterns = { "node_modules", ".git", ".venv", ".nvim" },
+					file_ignore_patterns = { "node_modules", ".git", ".venv", ".nvim", "dist" },
 					additional_args = function(_)
 						return { "--hidden" }
 					end,
@@ -26,7 +26,7 @@ return {
 				},
 				find_files = {
 					initial_mode = "normal",
-					file_ignore_patterns = { "node_modules", ".git", ".venv", ".nvim" },
+					file_ignore_patterns = { "node_modules", ".git", ".venv", ".nvim", "dist" },
 					hidden = true,
 				},
 			},

@@ -152,8 +152,11 @@ return {
 		local servers = {
 			"ts_ls",
 			"clangd",
+            "gopls"
 			-- "lua-language-server",
 		}
+
+        lspconfig.gopls.setup({})
 
 		lspconfig.ts_ls.setup({
 			init_options = {

@@ -23,7 +23,7 @@ opt.swapfile = false
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 opt.mouse = ""
-
+opt.splitright = true
 opt.wrap = false
 
 vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])

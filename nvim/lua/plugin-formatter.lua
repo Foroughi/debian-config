@@ -45,6 +45,10 @@ return {
 						}
 					end,
 				},
+
+				go = {
+					require("formatter.filetypes.go").prettier,
+				},
 				javascript = {
 					require("formatter.filetypes.javascript").prettier,
 				},
@@ -57,7 +61,7 @@ return {
 								"--tab-width",
 								"4",
 								"--stdin-filepath",
-                                "--orint-width",
+                                "--print-width",
                                 "180",
                                 "--prose-wrap",
                                 "never",

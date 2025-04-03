@@ -17,7 +17,7 @@ local plugins = {
 	require("plugin-telescope"),
     require("plugin-chatgpt"),
     require("plugin-lazygit"),
-    --require("plugin-copilot"),
+    require("plugin-copilot"),
 	--require("plugin-dev-container"),
 	require("plugin-which-key"),
 	--require("plugin-terminal"),

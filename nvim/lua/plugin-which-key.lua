@@ -139,22 +139,12 @@ return {
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
 			},
-			{ "<leader>c", group = "ChatGPT" },
+            -- Copilot
+			{ "<leader>c", group = "Copilot" },
 			{
 				"<leader>cc",
-				"<cmd>ChatGPT<cr>",
-				desc = "ChatGPT",
-			},
-			{
-				"<leader>cE",
-				"<cmd>ChatGPT<cr>",
-				desc = "Ask ChatGPT to explain",
-                mode = { "n", "v" }
-			},
-			{
-				"<leader>ce",
-				"<cmd>ChatGPTEditWithInstruction<cr>",
-				desc = "Edit with ChatGPT",
+				"<cmd>CopilotChatToggle<cr>",
+				desc = "Copilot Prompt",
 			},
 			{
 				"<leader>gl",
