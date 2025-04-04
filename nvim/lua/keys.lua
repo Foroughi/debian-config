@@ -1,10 +1,6 @@
 vim.g.mapleader = ' '
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set({'c' , 'i'}, '<C-j>', '<Down>', opts)
-vim.keymap.set({'c' , 'i'}, '<C-k>', '<Up>', opts)
-vim.keymap.set({'c' , 'i'}, '<C-l>', '<Right>', opts)
-vim.keymap.set({'c' , 'i'}, '<C-h>', '<Left>', opts)
 
 vim.keymap.set({'c' , 'v' , 'c' , 'i'}, '<c-s>' , "<cmd>:write<cr>")
 

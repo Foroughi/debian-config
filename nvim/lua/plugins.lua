@@ -3,11 +3,11 @@ local plugins = {
 	--Thems
 	require("plugin-noice"),
 	require("plugin-theme"),
-	require("plugin-dressing"),
+	--require("plugin-dressing"),
 	--require("plugin-catppuccin"),
 
 	--Editor
-	require("plugin-gitsign"),
+	--require("plugin-gitsign"),
 	--require("plugin-bufferline"),
 	require("plugin-indent"),
 	require("plugin-formatter"),
@@ -15,7 +15,7 @@ local plugins = {
 	require("plugin-notify"),
 	require("plugin-lualine"),
 	require("plugin-telescope"),
-    require("plugin-chatgpt"),
+    --require("plugin-chatgpt"),
     require("plugin-lazygit"),
     require("plugin-copilot"),
 	--require("plugin-dev-container"),

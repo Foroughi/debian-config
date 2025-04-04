@@ -46,6 +46,27 @@ return {
 					end,
 				},
 
+				html = {
+					--require("formatter.filetypes.html").prettier,
+
+					function()
+						return {
+							exe = "prettier",
+							args = {
+								"--tab-width",
+								"4",
+								"--stdin-filepath",
+                                "--print-width",
+                                "500",
+                                "--prose-wrap",
+                                "never",
+								util.escape_path(util.get_current_buffer_file_path()),
+							},
+							stdin = true,
+							try_node_modules = true,
+						}
+					end,
+				},
 				go = {
 					require("formatter.filetypes.go").prettier,
 				},
@@ -62,7 +83,7 @@ return {
 								"4",
 								"--stdin-filepath",
                                 "--print-width",
-                                "180",
+                                "500",
                                 "--prose-wrap",
                                 "never",
 								util.escape_path(util.get_current_buffer_file_path()),
