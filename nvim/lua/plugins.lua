@@ -70,7 +70,7 @@ for _, plugin in ipairs(plugins) do
 	plugin.setup()
 end
 
-local localVim = vim.loop.cwd() .. "/nvim/init.lua"
+local localVim = vim.loop.cwd() .. "/.nvim/init.lua"
 if os.rename(localVim, localVim) and true or false then
 	dofile(localVim)
 end
