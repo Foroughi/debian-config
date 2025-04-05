@@ -16,7 +16,6 @@ local action_state = require("telescope.actions.state")
 					--theme = "ivy",
 					-- disables netrw and use telescope-file-browser in its place
 					hijack_netrw = true,
-					initial_mode = "normal",
 					mappings = {
 						["n"] = {
 							["<CR>"] = function(prompt_bufnr)
@@ -57,7 +56,27 @@ local action_state = require("telescope.actions.state")
 							["<CR>"] = function(prompt_bufnr)
 								local selection = action_state.get_selected_entry()
 								actions.close(prompt_bufnr)
-								open_file_or_tab(selection)
+
+								if selection and selection.path then
+									local is_dir = vim.fn.isdirectory(selection.path) == 1
+									local buffers = vim.api.nvim_list_bufs()
+									local only_one_empty_buffer = #buffers == 1 and vim.fn.line2byte("$") == -1
+
+									if is_dir then
+										-- Open file browser in the selected directory
+										require("telescope").extensions.file_browser.file_browser({
+											cwd = selection.path,
+										})
+									else
+										if only_one_empty_buffer then
+											-- Reuse the existing empty buffer
+											vim.cmd("edit " .. selection.path)
+										else
+											-- Open in a new tab if other buffers exist
+											vim.cmd("tabnew " .. selection.path)
+										end
+									end
+								end
 							end,
 							["<C-c>"] = fb_actions.create_from_prompt,
 							["<C-r>"] = fb_actions.rename,
