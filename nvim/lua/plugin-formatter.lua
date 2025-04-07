@@ -68,7 +68,7 @@ return {
 					end,
 				},
 				go = {
-					require("formatter.filetypes.go").prettier,
+					require("formatter.filetypes.go").goimports,
 				},
 				javascript = {
 					require("formatter.filetypes.javascript").prettier,

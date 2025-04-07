@@ -10,7 +10,9 @@ return {
     },
     setup = function()
 
-        require("CopilotChat").setup({
+
+        
+        chat.setup({
             question_header = "## Ali ",
             answer_header = "## Copilot ",
             error_header = "## Error ",
@@ -32,7 +34,7 @@ return {
               Wording = "Please improve the grammar and wording of the following text.",
               Concise = "Please rewrite the following text to make it more concise.",
             },
-            model = "claude-3.7-sonnet",
+            model =  "gpt-4o" , -- or claude-3.7-sonnet",
             window = {
                 layout = 'vertical', -- 'vertical', 'horizontal', 'float', 'replace', or a function that returns the layout
                 width = 0.25, -- fractional width of parent, or absolute width in columns when > 1
@@ -42,82 +44,59 @@ return {
                 border = 'single', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
                 row = nil, -- row position of the window, default is centered
                 col = nil, -- column position of the window, default is centered
-                title = 'Copilot Chat', -- title of chat window
+                title = 'Copilot', -- title of chat window
                 footer = nil, -- footer of chat window
                 zindex = 1, -- determines if window is on top or below other floating windows
             },
-            -- mappings = {
-            --     -- Use tab for completion
-            --     complete = {
-            --       detail = "Use @<Tab> or /<Tab> for options.",
-            --       insert = "<Tab>",
-            --     },
-            --     -- Close the chat
-            --     close = {
-            --       normal = "q",
-            --       insert = "<C-c>",
-            --     },
-            --     -- Reset the chat buffer
-            --     reset = {
-            --       normal = "<C-x>",
-            --       insert = "<C-x>",
-            --     },
-            --     -- Submit the prompt to Copilot
-            --     submit_prompt = {
-            --       normal = "<CR>",
-            --       insert = "<C-CR>",
-            --     },
-            --     -- Accept the diff
-            --     accept_diff = {
-            --       normal = "<C-y>",
-            --       insert = "<C-y>",
-            --     },
-            --     -- Show help
-            --     show_help = {
-            --       normal = "g?",
-            --     },
-            -- },
+            show_help = false,
+            auto_follow_cursor = false,
+            insert_at_end = true,
+            highlight_selection = false,
+            mappings = {
+                submit_prompt = {
+                  normal = '<CR>',
+                  insert = '<CR>',
+                },
+                close = {
+                  normal = '<Esc>',
+                  insert = '<Esc>',
+                },
+            }
         })
 
-        -- local select = require("CopilotChat.select")
-        -- vim.api.nvim_create_user_command("CopilotChatVisual", function(args)
-        --     chat.ask(args.args, { selection = select.visual })
-        -- end,
-        -- { nargs = "*", range = true })
-        --
-        -- -- Inline chat with Copilot
-        -- vim.api.nvim_create_user_command("CopilotChatInline", function(args)
-        -- chat.ask(args.args, {
-        --   selection = select.visual,
-        --   window = {
-        --     layout = "float",
-        --     relative = "cursor",
-        --     width = 1,
-        --     height = 0.4,
-        --     row = 1,
-        --   },
-        -- })
-        -- end, { nargs = "*", range = true })
-        --
-        -- -- Restore CopilotChatBuffer
-        -- vim.api.nvim_create_user_command("CopilotChatBuffer", function(args)
-        -- chat.ask(args.args, { selection = select.buffer })
-        -- end, { nargs = "*", range = true })
-        --
-        -- -- Custom buffer for CopilotChat
-        -- vim.api.nvim_create_autocmd("BufEnter", {
-        --     pattern = "copilot-*",
-        --     callback = function()
-        --       vim.opt_local.relativenumber = true
-        --       vim.opt_local.number = true
-        --
-        --       -- Get current filetype and set it to markdown if the current filetype is copilot-chat
-        --       local ft = vim.bo.filetype
-        --       if ft == "copilot-chat" then
-        --         vim.bo.filetype = "markdown"
-        --       end
-        --     end,
-        -- })
-    end
+        vim.api.nvim_create_user_command("CopilotSetup", function(args)
+            require("copilot").setup({})
+        end, { nargs = "*", range = true })
+        
+        vim.api.nvim_create_user_command("CopilotChatOutline", function(args)
+            local current_buf = vim.api.nvim_get_current_buf()
 
+            chat.reset()
+            chat.set_selection(vim.api.nvim_get_current_buf(), 1 ,vim.api.nvim_buf_line_count(current_buf))
+            chat.open();
+            vim.cmd("startinsert")
+        end, { nargs = "*", range = true })
+
+        vim.api.nvim_create_user_command("CopilotChatInline", function(args)
+
+            local cursor_pos = vim.api.nvim_win_get_cursor(0)
+            local line_number = cursor_pos[1]
+
+            chat.reset()
+            chat.set_selection(vim.api.nvim_get_current_buf(), line_number,line_number)
+            -- Setup the inline chat window
+            chat.open({
+                window = {
+                    layout = "float",
+                    relative = "cursor",
+                    width = 0.5,
+                    height = 0.4,
+                    row = 1,
+                },
+                highlight_selection = true,
+                auto_follow_cursor = false,
+            });
+            vim.cmd("startinsert")
+        end, { nargs = "*", range = true })
+    end
 }

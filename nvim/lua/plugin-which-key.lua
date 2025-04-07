@@ -141,8 +141,17 @@ return {
 			{ "<leader>c", group = "Copilot" },
 			{
 				"<leader>cc",
-				"<cmd>CopilotChatToggle<cr>",
-				desc = "Copilot Prompt",
+				"<cmd>CopilotChatOutline<cr>",
+				desc = "copilot prompt",
+                mode = {"n", "v"}
+			},
+
+			{
+				"<leader>ci",
+				"<cmd>CopilotChatInline<cr>",
+				desc = "copilot inline prompt",
+
+                mode = {"n", "v"}
 			},
 		})
 	end,
