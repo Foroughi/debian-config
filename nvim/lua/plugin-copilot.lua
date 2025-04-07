@@ -10,7 +10,7 @@ return {
     },
     setup = function()
 
-
+        local chat = require("CopilotChat")
         
         chat.setup({
             question_header = "## Ali ",
