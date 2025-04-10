@@ -87,9 +87,7 @@ aliases = { "corpuser034g" = "matchai" }
 format = "[ $env_value ]($style)"
 variable = 'flox_prompt_environments'
 style = "bg:#0575f5"
-only_if = "env_value"
 
 [character]
 format = "$symbol "
-style = "blue red"
 success_symbol = "➜"

@@ -204,6 +204,11 @@ Neovim(){
 Flox(){
     echp 'Please Use their website for now'
 }
+
+Starship(){
+    curl -sS https://starship.rs/install.sh | sh
+}
+
 menu() {
 
         clear
@@ -425,6 +430,15 @@ check() {
     fi
 
     statuses+=(" ")
+
+    if [ -n "$(which starship)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+    statuses+=(" ")
 }
 
 
@@ -457,6 +471,7 @@ modules=(
     Preperation
     Flox
     Neovim
+    Starship
 )
 
 descriptions=(
@@ -482,6 +497,7 @@ descriptions=(
     "Final preperation"
     "Install Flox"
     "Install Neovim"
+    "Install starship"
 )
 
 count=${#modules[@]}

@@ -48,3 +48,10 @@ _fzf_comprun() {
   esac
 }
 #eval "$(fzf --bash)"
+
+eval "$(gh copilot alias -- bash)"
+eval "$(starship init bash)"
+
+if [ -n "$TMUX" ]; then
+  echo -ne '\e[6 q'
+fi
