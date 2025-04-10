@@ -1,0 +1,95 @@
+format = """
+[](fg:#0575f5)\
+$os\
+$username\
+[](bg:#769ff0 fg:#0575f5)\
+$directory\
+[](fg:#769ff0 )\
+$fill\
+[](fg:#0575f5)\
+$env_var\
+[](fg:#394260 bg:#0575f5)\
+$git_branch\
+$git_status\
+[](fg:#394260 bg:#212736)\
+\n$character
+"""
+
+[fill]
+symbol = ' '
+style = ''
+
+
+[os]
+disabled = false
+style = "bg:#0575f5 fg:#ffffff bold"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚 "
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+Pop = ""
+
+[directory]
+style = "fg:#e3e5e5 bg:#769ff0"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:#394260"
+format = '[[ $symbol $branch](fg:#769ff0 bg:#394260)]($style)'
+
+[git_status]
+style = "bg:#394260"
+format = '[[($all_status$ahead_behind)](fg:#769ff0 bg:#394260)]($style)'
+
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+
+[username]
+style_user = 'bg:#0575f5 fg:white bold'
+style_root = 'bg:#0575f5 fg:black bold'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+aliases = { "corpuser034g" = "matchai" }
+
+[env_var]
+format = "[ $env_value ]($style)"
+variable = 'flox_prompt_environments'
+style = "bg:#0575f5"
+only_if = "env_value"
+
+[character]
+format = "$symbol "
+style = "blue red"
+success_symbol = "➜"

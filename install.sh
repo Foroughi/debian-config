@@ -37,7 +37,7 @@ Sound() {
 
 Misc() {
 
-    sudo apt install -y  xclip tree lsd btop curl ranger rofi unzip picom nitrogen ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
+    sudo apt install -y  jq xclip tree lsd btop curl ranger rofi unzip picom nitrogen ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
 
 }
 
@@ -191,7 +191,7 @@ Preperation() {
     pulseaudio -D
     sudo usermod -aG audio $USER
     sudo usermod -aG video $USER
-    sudo usermod -aG docker $USER  
+    sudo usermod -aG docker $USER
 }
 
 Neovim(){
