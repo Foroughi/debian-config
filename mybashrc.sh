@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PATH=~/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/nvim-linux-x86_64/bin
 #. ~/.config/.fancy-git/prompt.sh
 . ~/.config/mybash/mybash.sh
 alias ll='lsd -l -A'
@@ -30,6 +31,9 @@ complete -cf sudo
 #[ -d ~/.fzf ] && export PATH="$PATH:~/.fzf/bin"
 #export PATH="$PATH:/opt/nvim-linux64/bin"
 eval "$(direnv hook bash)"
+eval "$(gh copilot alias -- bash)"
+eval "$(starship init bash)"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_COMPLETION_TRIGGER='>'
 export FZF_COMPLETION_OPTS='--border --info=inline'
@@ -49,8 +53,6 @@ _fzf_comprun() {
 }
 #eval "$(fzf --bash)"
 
-eval "$(gh copilot alias -- bash)"
-eval "$(starship init bash)"
 
 if [ -n "$TMUX" ]; then
   echo -ne '\e[6 q'

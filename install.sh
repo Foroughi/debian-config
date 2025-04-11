@@ -37,10 +37,17 @@ Sound() {
 
 Misc() {
 
-    sudo apt install -y  jq xclip tree lsd btop curl ranger rofi unzip picom nitrogen ca-certificates kitty wget polybar dunst conky scrot tmux neofetch cmatrix fzf   gpg apt-transport-https
+    sudo apt install -y   xclip rofi  picom nitrogen kitty polybar dunst conky scrot
 
 }
 
+
+CmdTools() {
+
+
+    sudo apt install -y  direnv tree lsd btop curl ranger unzip ca-certificates wget  tmux neofetch cmatrix fzf   gpg apt-transport-https
+
+}
 
 Nvidia() {
 
@@ -209,6 +216,15 @@ Starship(){
     curl -sS https://starship.rs/install.sh | sh
 }
 
+Lazygit(){
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit -D -t /usr/local/bin/
+}
+Lazydocker(){
+    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+}
 menu() {
 
         clear
@@ -233,7 +249,8 @@ menu() {
 
 
 }
-  getkey(){
+
+getkey(){
 
     check
     current=0
@@ -330,12 +347,10 @@ check() {
         statuses+=(" ")
     fi
 
-    if [ -n "$(which tmux)" ]
-    then
-        statuses+=("I")
-    else
-        statuses+=(" ")
-    fi
+
+    statuses+=(" ")
+
+    statuses+=(" ")
 
     if [ -n "$(which nvidia-settings)" ]
     then
@@ -439,6 +454,22 @@ check() {
     fi
 
     statuses+=(" ")
+
+
+    if [ -n "$(which lazygit)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
+
+
+    if [ -n "$(which lazydocker)" ]
+    then
+        statuses+=("I")
+    else
+        statuses+=(" ")
+    fi
 }
 
 
@@ -454,6 +485,7 @@ modules=(
     Libraries
     Sound
     Misc
+    CmdTools
     Nvidia
     Google_Chrome
     TGWM
@@ -472,6 +504,8 @@ modules=(
     Flox
     Neovim
     Starship
+    Lazygit
+    Lazydocker
 )
 
 descriptions=(
@@ -480,6 +514,7 @@ descriptions=(
     "Install required libraries for TGWM and etc"
     "Install sound driver and sound utils"
     "Install desktop widgets , optional utils"
+    "Install Commandline tools"
     "Install Nvidia driver"
     "Install Google chrome"
     "Install TGWM"
@@ -498,6 +533,8 @@ descriptions=(
     "Install Flox"
     "Install Neovim"
     "Install starship"
+    "Install Lazygit"
+    "Install Lazydocker"
 )
 
 count=${#modules[@]}
