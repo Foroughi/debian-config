@@ -21,7 +21,10 @@ alias sb='source ~/.bashrc && c'
 alias ai='~/.config/assistant/run.sh'
 if [ "$TERM" == "tmux-256color" ]; then
 
-    neofetch
+    if [ -n "$(which neofetch)" ]
+    then
+        neofetch
+    fi
 
 fi
 
