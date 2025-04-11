@@ -30,9 +30,20 @@ complete -cf sudo
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 #[ -d ~/.fzf ] && export PATH="$PATH:~/.fzf/bin"
 #export PATH="$PATH:/opt/nvim-linux64/bin"
-eval "$(direnv hook bash)"
-eval "$(gh copilot alias -- bash)"
-eval "$(starship init bash)"
+
+if [ -n "$(which direnv)" ]
+then
+    eval "$(direnv hook bash)"
+fi
+
+
+if [ -n "$(which gh)" ]
+then
+    eval "$(gh copilot alias -- bash)"
+fi
+
+
+#eval "$(starship init bash)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_COMPLETION_TRIGGER='>'
