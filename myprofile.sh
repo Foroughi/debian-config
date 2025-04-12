@@ -1,2 +1,2 @@
-dunst &
+#dunst &
 . "$HOME/.bashrc"

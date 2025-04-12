@@ -25,8 +25,13 @@ getTerminalWidth(){
 }
 setPS1(){
     t=3;
-    text="\n╭─"
+    text="\n"
     # text=""
+
+    # Draw user
+    local user="󰣚$USER"
+    t=$((t + ${#user} + 3))
+    text+=$(drawTag $user 7 239)
 
     # Draw Current path
     local currentDir=$(pwd)
@@ -42,17 +47,17 @@ setPS1(){
     if [ "" != "$currentBranch" ]
     then
         t=$((t + ${#currentBranch} + 5))
-        text+=$(drawTag "$space$(getGitTag)" 255 160)
+        text+=$(drawTag "$space$(getGitTag)" 255 199)
     fi
 
     if [[ -n $FLOX_RUNTIME_DIR ]]; then
         flox=$FLOX_ENV_DESCRIPTION
         t=$((t + ${#flox} + 5))
-        text+=$(drawTag "💻$space$flox" 0 6)
+        text+=$(drawTag "💻$space$flox" 255 236)
     fi
 
     # Draw Ending
-    text+="\n│\n"
+    text+="\n ➔ "
 
     # Draw Spaces
     local spaces=""
@@ -62,7 +67,7 @@ setPS1(){
     done
 
 
-    PS1="${text//###/$spaces}╰─ "
+    PS1="${text//###/$spaces}"
 }
 
 # bind "set vi-cmd-mode-string "\1\e[34;1m\2CMD\1\e[0m\2""
