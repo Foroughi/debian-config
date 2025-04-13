@@ -16,7 +16,7 @@ drawTag() {
     echo "$space$(wrapTextWithColor "\$(getTagStarter $1)" $3 0)$(wrapTextWithColor $1 $2 $3)$(wrapTextWithColor "\$(getTagEnder $1)" $3 0)"
 }
 
-getgittag(){
+getGitTag(){
     git rev-parse --abbrev-ref head 2> /dev/null
 }
 
@@ -53,13 +53,13 @@ setPS1(){
     if [[ -n $flox_runtime_dir ]]; then
         flox=$flox_env_description
         t=$((t + ${#flox} + 5))
-        text+=$(drawtag "💻$space$flox" 255 236)
+        text+=$(drawTag "💻$space$flox" 255 236)
     fi
 
     if [[ -n $SSH_CLIENT || -n $SSH_CONNECTION ]]; then
         ssh_ip=$(echo $SSH_CLIENT | awk '{print $1}')
         t=$((t + ${#ssh_ip} + 5))
-        text+=$(drawtag "🔐$space$ssh_ip" 255 236)
+        text+=$(drawTag "🔐$space$ssh_ip" 255 236)
     fi
 
     # Draw Ending

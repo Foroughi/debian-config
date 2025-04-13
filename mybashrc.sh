@@ -19,6 +19,7 @@ alias gp='git push'
 alias gc='git commit -a -m $1'
 alias sb='source ~/.bashrc && c'
 alias ai='~/.config/assistant/run.sh'
+alias lg="lazygit"
 if [ "$TERM" == "tmux-256color" ]; then
 
     if [ -n "$(which neofetch)" ]
