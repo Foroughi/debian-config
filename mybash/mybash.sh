@@ -47,7 +47,7 @@ setPS1(){
     if [ "" != "$currentBranch" ]
     then
         t=$((t + ${#currentBranch} + 5))
-        text+=$(drawTag "$space$(getGitTag)" 255 199)
+        text+=$(drawTag "$space$(getGitTag)" 255 206)
     fi
 
     if [[ -n $flox_runtime_dir ]]; then
