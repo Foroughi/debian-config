@@ -16,8 +16,8 @@ drawTag() {
     echo "$space$(wrapTextWithColor "\$(getTagStarter $1)" $3 0)$(wrapTextWithColor $1 $2 $3)$(wrapTextWithColor "\$(getTagEnder $1)" $3 0)"
 }
 
-getGitTag(){
-    git rev-parse --abbrev-ref HEAD 2> /dev/null
+getgittag(){
+    git rev-parse --abbrev-ref head 2> /dev/null
 }
 
 getTerminalWidth(){
@@ -29,8 +29,8 @@ setPS1(){
     # text=""
 
     # Draw user
-    local user="󰣚$USER"
-    t=$((t + ${#user} + 3))
+    local user="Ali"
+    t=$((t + ${#user} + 5))
     text+=$(drawTag $user 7 239)
 
     # Draw Current path
@@ -50,10 +50,16 @@ setPS1(){
         text+=$(drawTag "$space$(getGitTag)" 255 199)
     fi
 
-    if [[ -n $FLOX_RUNTIME_DIR ]]; then
-        flox=$FLOX_ENV_DESCRIPTION
+    if [[ -n $flox_runtime_dir ]]; then
+        flox=$flox_env_description
         t=$((t + ${#flox} + 5))
-        text+=$(drawTag "💻$space$flox" 255 236)
+        text+=$(drawtag "💻$space$flox" 255 236)
+    fi
+
+    if [[ -n $SSH_CLIENT || -n $SSH_CONNECTION ]]; then
+        ssh_ip=$(echo $SSH_CLIENT | awk '{print $1}')
+        t=$((t + ${#ssh_ip} + 5))
+        text+=$(drawtag "🔐$space$ssh_ip" 255 236)
     fi
 
     # Draw Ending
