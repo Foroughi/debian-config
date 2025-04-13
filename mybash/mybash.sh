@@ -59,7 +59,7 @@ setPS1(){
     if [[ -n $SSH_CLIENT || -n $SSH_CONNECTION ]]; then
         ssh_ip=$(echo $SSH_CLIENT | awk '{print $1}')
         t=$((t + ${#ssh_ip} + 5))
-        text+=$(drawTag "🔐$space$ssh_ip" 255 236)
+        text+=$(drawTag "🖧 $space$ssh_ip" 255 236)
     fi
 
     # Draw Ending
