@@ -45,7 +45,10 @@ Misc() {
 CmdTools() {
 
 
-    sudo apt install -y  direnv tree lsd btop curl ranger unzip ca-certificates wget  tmux neofetch cmatrix fzf   gpg apt-transport-https
+    sudo apt install -y bat direnv tree lsd btop curl ranger unzip ca-certificates wget  tmux neofetch cmatrix fzf   gpg apt-transport-https
+
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
 
 }
 
