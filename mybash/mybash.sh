@@ -83,7 +83,7 @@ setPS1(){
     local currentDir=$(pwd)
     currentDir="${currentDir/$HOME/"~"}"
     t=$((t + ${#currentDir} + 5))
-    text+=$(drawTag2 "" $currentDir 15 27)
+    text+=$(drawTag2 "" $currentDir 232 39)
 
     # Draw Middle spaces
     text+='###'
@@ -111,7 +111,7 @@ setPS1(){
     if [[ -n $SSH_CLIENT || -n $SSH_CONNECTION ]]; then
         ssh_ip=$(echo $SSH_CLIENT | awk '{print $1}')
         t=$((t + ${#ssh_ip} + 5))
-        text+=$(drawTag2 "🖧" "$ssh_ip" 232 34)
+        text+=$(drawTag2 "" "$ssh_ip" 232 81)
     fi
 
     # Draw Ending
