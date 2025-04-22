@@ -41,7 +41,20 @@ drawTag2() {
 }
 
 getGitTag(){
-    git rev-parse --abbrev-ref head 2> /dev/null
+
+     # git fetch --quiet
+     branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+      # git diff --quiet || branch=$(wrapTextWithColor2 "$branch" 85 237)
+     dirty=$(git diff --quiet || echo "✎ ")
+     behind=$(git rev-list --count @{u}.. 2>/dev/null || echo "0")
+     ahead=$(git rev-list --count ..@{u} 2>/dev/null || echo "0")
+
+     status=""
+     [[ "$behind" -gt 0 ]] && status+="${behind}↑"
+     [[ "$ahead" -gt 0 ]] && [[ -n "$status" ]] && status+=" "
+     [[ "$ahead" -gt 0 ]] && status+="${ahead}↓"
+
+     echo "${dirty:- }$branch ${status}"
 }
 
 getTerminalWidth(){
@@ -95,15 +108,20 @@ setPS1(){
     fi
 
     # Draw Git Tag
-    local currentBranch=$(getGitTag)
-    if [ "" != "$currentBranch" ]
+    if [ -d .git ]
     then
+        local currentBranch=$(getGitTag)
         t=$((t + ${#currentBranch} + 5))
-        text+=$(drawTag2 "" "$(getGitTag)" 236 218)
+        text+=$(drawTag2 "" "$currentBranch" 236 218)
     fi
 
     if [[ -n $FLOX_RUNTIME_DIR ]]; then
         flox=$FLOX_ENV_DESCRIPTION
+
+        if [ "" == "$flox" ]
+        then
+            flox="Default"
+        fi
         t=$((t + ${#flox} + 5))
         text+=$(drawTag2 "" "$flox" 236 39)
     fi

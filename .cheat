@@ -1,0 +1,11 @@
+# .cheat file
+
+# Bash shortcuts
+Ctrl + A    --> Move to the beginning of the line
+Ctrl + E    --> Move to the end of the line
+Ctrl + L    --> Clear screen
+
+# Git commands
+git status  --> Check the status of your git repo
+git diff    --> Show changes in your git repo
+w
