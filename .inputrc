@@ -1,9 +1,0 @@
-#add following line to ~/.inputrc
-#$include ~/.config/.inputrc
-
-set editing-mode vi
-set show-mode-in-prompt on
-set vi-cmd-mode-string "\1╰─ \e[2 q\e[38;5;27m\2\e[38;5;231m\e[48;5;27m:\e[0m\e[38;5;27m\1\e[0m \2"
-set vi-ins-mode-string "\1╰─ \e[5 q\e[38;5;27m\2\e[38;5;231m\e[48;5;27m$\e[0m\e[38;5;27m\1\e[0m \2"
-set keymap vi-insert
-RETURN: "\e\n"
