@@ -5,15 +5,14 @@ export PATH=~/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/game
 . ~/.config/mybash/mybash.sh
 . ~/.config/mybash/alias.sh
 . ~/.config/mybash/fzf.sh
-. ~/.config/mybash/flox.sh
-if [ "$TERM" == "tmux-256color" ]; then
-
-    if [ -n "$(which neofetch)" ]
-    then
-        neofetch
-    fi
-
-fi
+# if [ "$TERM" == "tmux-256color" ]; then
+#
+#     if [ -n "$(which neofetch)" ]
+#     then
+#         neofetch
+#     fi
+#
+# fi
 
 complete -cf sudo
 

@@ -144,6 +144,7 @@ setPS1(){
 
 
     PS1="${text//###/$spaces}"
+    PS2="  ➔ "
 }
 
 # bind "set vi-cmd-mode-string "\1\e[34;1m\2CMD\1\e[0m\2""
