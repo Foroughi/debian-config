@@ -21,3 +21,4 @@ alias ai='~/.config/assistant/run.sh'
 alias lg="lazygit"
 alias ld="lazydocker"
 alias gf="git fetch -q"
+alias gS="git pull && git push"
