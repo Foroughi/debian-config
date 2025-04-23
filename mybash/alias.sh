@@ -20,3 +20,4 @@ alias sb='source ~/.bashrc && c'
 alias ai='~/.config/assistant/run.sh'
 alias lg="lazygit"
 alias ld="lazydocker"
+alias gf="git fetch -q"
