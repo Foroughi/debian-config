@@ -59,9 +59,9 @@ local setup_tools = function()
 		},
 		mapping = cmp.mapping.preset.insert({
 			--['<C-Space>'] = cmp.mapping.complete(),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
+			["<tab>"] = cmp.mapping.confirm({ select = true }),
 
-			["<Tab>"] = cmp.mapping(function(fallback)
+			["+"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
 				elseif luasnip.jumpable(1) then
@@ -71,7 +71,7 @@ local setup_tools = function()
 				end
 			end, { "i", "s" }),
 
-			["<S-Tab>"] = cmp.mapping(function(fallback)
+			["-"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_prev_item()
 				elseif luasnip.jumpable(-1) then
@@ -109,24 +109,24 @@ local setup_tools = function()
 				return
 			end
 
-			local opts = { buffer = bufnr, noremap = true, silent = true }
-			vim.keymap.set("n", "<space>mD", vim.lsp.buf.declaration, opts)
-			vim.keymap.set("n", "<space>md", vim.lsp.buf.definition, opts)
-			vim.keymap.set("n", "<space>mh", vim.lsp.buf.hover, opts)
-			vim.keymap.set("n", "<space>mi", vim.lsp.buf.implementation, opts)
-			--vim.keymap.set('n', '<space>dK', vim.lsp.buf.signature_help, opts)
-			vim.keymap.set("n", "<space>mwa", vim.lsp.buf.add_workspace_folder, opts)
-			vim.keymap.set("n", "<space>mwr", vim.lsp.buf.remove_workspace_folder, opts)
-			vim.keymap.set("n", "<space>mwl", function()
-				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end, opts)
-			--vim.keymap.set('n', '<space>dD', vim.lsp.buf.type_definition, opts)
-			vim.keymap.set("n", "<space>mr", vim.lsp.buf.rename, opts)
-			vim.keymap.set("n", "<space>mR", vim.lsp.buf.references, opts)
-			vim.keymap.set("n", "<space>me", vim.diagnostic.open_float, opts)
-			vim.keymap.set("n", "<space>m[", vim.diagnostic.goto_prev, opts)
-			vim.keymap.set("n", "<space>m]", vim.diagnostic.goto_next, opts)
-			vim.keymap.set("n", "<space>mq", vim.diagnostic.setloclist, opts)
+			-- local opts = { buffer = bufnr, noremap = true, silent = true }
+			-- vim.keymap.set("n", "<space>mD", vim.lsp.buf.declaration, opts)
+			-- vim.keymap.set("n", "<space>md", vim.lsp.buf.definition, opts)
+			-- vim.keymap.set("n", "<space>mh", vim.lsp.buf.hover, opts)
+			-- vim.keymap.set("n", "<space>mi", vim.lsp.buf.implementation, opts)
+			-- --vim.keymap.set('n', '<space>dK', vim.lsp.buf.signature_help, opts)
+			-- vim.keymap.set("n", "<space>mwa", vim.lsp.buf.add_workspace_folder, opts)
+			-- vim.keymap.set("n", "<space>mwr", vim.lsp.buf.remove_workspace_folder, opts)
+			-- vim.keymap.set("n", "<space>mwl", function()
+			-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+			-- end, opts)
+			-- --vim.keymap.set('n', '<space>dD', vim.lsp.buf.type_definition, opts)
+			-- vim.keymap.set("n", "<space>mr", vim.lsp.buf.rename, opts)
+			-- vim.keymap.set("n", "<space>mR", vim.lsp.buf.references, opts)
+			-- vim.keymap.set("n", "<space>me", vim.diagnostic.open_float, opts)
+			-- vim.keymap.set("n", "<space>m[", vim.diagnostic.goto_prev, opts)
+			-- vim.keymap.set("n", "<space>m]", vim.diagnostic.goto_next, opts)
+			-- vim.keymap.set("n", "<space>mq", vim.diagnostic.setloclist, opts)
 		end,
 	})
 
@@ -152,11 +152,11 @@ return {
 		local servers = {
 			"ts_ls",
 			"clangd",
-            "gopls"
+			"gopls",
 			-- "lua-language-server",
 		}
 
-        lspconfig.gopls.setup({})
+		lspconfig.gopls.setup({})
 
 		lspconfig.ts_ls.setup({
 			init_options = {

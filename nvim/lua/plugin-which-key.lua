@@ -37,36 +37,73 @@ return {
 
 		wk.add({
 
-            -- Telescope
+			-- Telescope
 			{ "<leader>f", group = "Telescope" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "List of opened windows" },
-			{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "View LSP diagnostics" },
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find a file in current directory" },
-			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find in files" },
-			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
 			{
 				"<leader>ft",
-				"<cmd>Telescope file_browser path=%:p:help |select_buffer=true<cr>|",
-				desc = "Show file tree",
+				function()
+					require("telescope.builtin").find_files({
+						cwd = vim.fn.expand("%:p:h"), -- current buffer directory
+					})
+				end,
+				desc = "Find a file in current directory",
 			},
+			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find in files" },
+			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
 
-            -- Diagnostics
+			-- -- Diagnostics
+
 			{ "<leader>m", group = "Diagnostics" },
-			{ "<leader>mD", desc = "View declaration" },
-			{ "<leader>mR", desc = "Refrences" },
-			{ "<leader>m[", desc = "Prevoius diagnostic error" },
-			{ "<leader>m]", desc = "Next diagnostic error" },
-			{ "<leader>md", desc = "View definition" },
-			{ "<leader>me", desc = "Floating diagnostics win" },
-			{ "<leader>mh", desc = "Hover" },
-			{ "<leader>mi", desc = "Go to implementation" },
-			{ "<leader>mq", desc = "Diagnostic error list" },
-			{ "<leader>mr", desc = "Rename" },
+			{ "<leader>md", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to Definition", mode = "n" },
+			{ "<leader>mr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename Symbol", mode = "n" },
+			{
+				"<leader>mx",
+				function()
+					require("telescope.builtin").diagnostics({ bufnr = 0 })
+				end,
+				desc = "Show diagnostics in current buffer",
+				mode = "n",
+			},
+			{
+				"<leader>mX",
+				function()
+					require("telescope.builtin").diagnostics()
+				end,
+				desc = "Show diagnostics",
+				mode = "n",
+			},
+			{ "<leader>mc", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action", mode = { "n", "v" } },
+			{ "<leader>mh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover Documentation", mode = "n" },
+			{ "<leader>mi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to Implementation", mode = "n" },
+
+			{ "<leader>ms", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", desc = "View document symbols", mode = "n" },
+			{
+				"<leader>mS",
+				"<cmd>Telescope symbols<CR>",
+				desc = "View workspace symbols",
+				mode = "n",
+			},
+			{ "<leader>me", "<cmd>lua vim.diagnostic.open_float()<CR>", desc = "Show Diagnostics (float)", mode = "n" },
+			{ "<leader>mR", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to References", mode = "n" },
+			{ "<leader>mH", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help", mode = "n" },
+			-- { "<leader>m", group = "Diagnostics" },
+			-- { "<leader>mD", desc = "View declaration" },
+			-- { "<leader>mR", desc = "Refrences" },
+			-- { "<leader>m[", desc = "Prevoius diagnostic error" },
+			-- { "<leader>m]", desc = "Next diagnostic error" },
+			-- { "<leader>md", desc = "View definition" },
+			-- { "<leader>me", desc = "Floating diagnostics win" },
+			-- { "<leader>mh", desc = "Hover" },
+			-- { "<leader>mi", desc = "Go to implementation" },
+			-- { "<leader>mq", desc = "Diagnostic error list" },
+			-- { "<leader>mr", desc = "Rename" },
 			{ "<leader>mwa", desc = "Add workspace folder" },
 			{ "<leader>mwl", desc = "List workspace folders" },
 			{ "<leader>mwr", desc = "Remove workspace folder" },
 
-            -- Tab navigations
+			-- Tab navigations
 			{ "<leader>t", group = "Tab navigation" },
 			{ "<leader>tQ", "<cmd>quitall<cr>", desc = "Close all" },
 			{ "<leader>th", "<cmd>tabprev<cr>", desc = "Move to previouse tab" },
@@ -74,11 +111,11 @@ return {
 			{ "<leader>tn", "<cmd>tabnew<cr>", desc = "New tab" },
 			{ "<leader>tq", "<cmd>q<cr>", desc = "Close current tab" },
 
-            -- Clipboard
+			-- Clipboard
 			{ "<leader>p", desc = "Paste from system clipboard" },
 			{ "<leader>y", desc = "Copy to system clipboard" },
 
-            -- Debug
+			-- Debug
 			{ "<leader>d", group = "Debug mode" },
 			{ "<leader>dc", desc = "Start/Continue" },
 			{ "<leader>dt", desc = "Terminate" },
@@ -90,7 +127,7 @@ return {
 			{ "<leader>M", "<cmd>messages<cr>", desc = "View lastest messages" },
 			{ "<leader>T", "<cmd>Telescope treesitter<cr>", desc = "View Tree sitter" },
 
-            -- Lazy git
+			-- Lazy git
 			{ "<leader>g", group = "Git" },
 			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "View Commits" },
 			{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "View/Switch branch" },
@@ -99,51 +136,51 @@ return {
 				"<leader>gl",
 				"<cmd>LazyGit<cr>",
 				desc = "Lazy Git",
-                mode = {"n"}
+				mode = { "n" },
 			},
-			{ "<leader>x", group = "Troubles" },
-			{
-				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
-			},
-			{
-				"<leader>xX",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
-			},
-			{
-				"<leader>xS",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
-			},
-			{
-				"<leader>xl",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				desc = "LSP Definitions / references / ... (Trouble)",
-			},
-			{
-				"<leader>xL",
-				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Location List (Trouble)",
-			},
-			{
-				"<leader>xs",
-				"<cmd>Trouble symbols<cr>",
-				desc = "View symboles",
-			},
-			{
-				"<leader>xQ",
-				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Quickfix List (Trouble)",
-			},
-            -- Copilot
+			-- { "<leader>x", group = "Troubles" },
+			-- {
+			-- 	"<leader>xx",
+			-- 	"<cmd>Trouble diagnostics toggle<cr>",
+			-- 	desc = "Diagnostics (Trouble)",
+			-- },
+			-- {
+			-- 	"<leader>xX",
+			-- 	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			-- 	desc = "Buffer Diagnostics (Trouble)",
+			-- },
+			-- {
+			-- 	"<leader>xS",
+			-- 	"<cmd>Trouble symbols toggle focus=false<cr>",
+			-- 	desc = "Symbols (Trouble)",
+			-- },
+			-- {
+			-- 	"<leader>xl",
+			-- 	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+			-- 	desc = "LSP Definitions / references / ... (Trouble)",
+			-- },
+			-- {
+			-- 	"<leader>xL",
+			-- 	"<cmd>Trouble loclist toggle<cr>",
+			-- 	desc = "Location List (Trouble)",
+			-- },
+			-- {
+			-- 	"<leader>xs",
+			-- 	"<cmd>Trouble symbols<cr>",
+			-- 	desc = "View symboles",
+			-- },
+			-- {
+			-- 	"<leader>xQ",
+			-- 	"<cmd>Trouble qflist toggle<cr>",
+			-- 	desc = "Quickfix List (Trouble)",
+			-- },
+			-- Copilot
 			{ "<leader>c", group = "Copilot" },
 			{
 				"<leader>cc",
 				"<cmd>CopilotChatOutline<cr>",
 				desc = "copilot prompt",
-                mode = {"n", "v"}
+				mode = { "n", "v" },
 			},
 
 			{
@@ -151,8 +188,36 @@ return {
 				"<cmd>CopilotChatInline<cr>",
 				desc = "copilot inline prompt",
 
-                mode = {"n", "v"}
+				mode = { "n", "v" },
 			},
+
+			{
+				"<leader>w",
+				desc = "Window management",
+				mode = { "n" },
+			},
+
+			{ "<leader>wh", "<C-w>h", desc = "Move to left window", mode = "n" },
+			{ "<leader>wj", "<C-w>j", desc = "Move to below window", mode = "n" },
+			{ "<leader>wk", "<C-w>k", desc = "Move to above window", mode = "n" },
+			{ "<leader>wl", "<C-w>l", desc = "Move to right window", mode = "n" },
+			{ "<leader>wv", "<C-w>v", desc = "Vertical split", mode = "n" },
+			{ "<leader>ws", "<C-w>s", desc = "Horizontal split", mode = "n" },
+			{ "<leader>wq", "<C-w>q", desc = "Quit window", mode = "n" },
+			{ "<leader>ww", "<C-w>w", desc = "Next window", mode = "n" },
+			{ "<leader>w=", "<C-w>=", desc = "Balance windows", mode = "n" },
+			{ "<leader>w+", "<C-w>+", desc = "Increase window height", mode = "n" },
+			{ "<leader>w-", "<C-w>-", desc = "Decrease window height", mode = "n" },
+			{ "<leader>w_", "<C-w>_", desc = "Maximize window height", mode = "n" },
+			{ "<leader>w|", "<C-w>|", desc = "Maximize window width", mode = "n" },
+			{ "<leader>wH", "<C-w>H", desc = "Move window far left", mode = "n" },
+			{ "<leader>wL", "<C-w>L", desc = "Move window far right", mode = "n" },
+			{ "<leader>wr", "<C-w>r", desc = "Rotate windows", mode = "n" },
+			{ "<leader>wR", "<C-w>R", desc = "Rotate windows opposite", mode = "n" },
+			{ "<leader>wx", "<C-w>x", desc = "Swap windows", mode = "n" },
+			{ "<leader>wT", "<C-w>T", desc = "Break out window into new tab", mode = "n" },
+			{ "<leader>wo", "<C-w>o", desc = "Only keep current window", mode = "n" },
+			{ "<leader>wQ", "<cmd>qa<cr>", desc = "Quit all", mode = "n" },
 		})
 	end,
 }

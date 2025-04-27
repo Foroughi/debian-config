@@ -1,8 +1,7 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 local opts = { noremap = true, silent = true }
 
-
-vim.keymap.set({'c' , 'v' , 'c' , 'i'}, '<c-s>' , "<cmd>:write<cr>")
+vim.keymap.set({ "c", "v", "i" }, "<C-s>", "<cmd>:write<cr>")
 
 -- to get used to vim key layout
 --vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Up>', '<Nop>', opts)
@@ -43,4 +42,4 @@ vim.keymap.set({'c' , 'v' , 'c' , 'i'}, '<c-s>' , "<cmd>:write<cr>")
 --vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Insert>', '<Nop>', opts)
 --vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Delete>', '<Nop>', opts)
 
-vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Esc><Esc>', ':noh<CR>', opts)
+vim.keymap.set({ "n", "v", "c", "i" }, "<Esc><Esc>", ":noh<CR>", opts)
