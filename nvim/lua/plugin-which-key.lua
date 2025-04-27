@@ -53,13 +53,15 @@ return {
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find in files" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
 
+			{ "<leader>fn", "<cmd>Telescope notify<cr>", desc = "View notifications" },
+			{ "<leader>fT", "<cmd>Telescope treesitter<cr>", desc = "View Tree sitter" },
 			-- -- Diagnostics
 
-			{ "<leader>m", group = "Diagnostics" },
-			{ "<leader>md", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to Definition", mode = "n" },
-			{ "<leader>mr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename Symbol", mode = "n" },
+			{ "<leader>x", group = "Diagnostics" },
+			{ "<leader>xd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to Definition", mode = "n" },
+			{ "<leader>xr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename Symbol", mode = "n" },
 			{
-				"<leader>mx",
+				"<leader>xx",
 				function()
 					require("telescope.builtin").diagnostics({ bufnr = 0 })
 				end,
@@ -67,27 +69,27 @@ return {
 				mode = "n",
 			},
 			{
-				"<leader>mX",
+				"<leader>xX",
 				function()
 					require("telescope.builtin").diagnostics()
 				end,
 				desc = "Show diagnostics",
 				mode = "n",
 			},
-			{ "<leader>mc", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action", mode = { "n", "v" } },
-			{ "<leader>mh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover Documentation", mode = "n" },
-			{ "<leader>mi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to Implementation", mode = "n" },
+			{ "<leader>xc", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action", mode = { "n", "v" } },
+			{ "<leader>xh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover Documentation", mode = "n" },
+			{ "<leader>xi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to Implementation", mode = "n" },
 
-			{ "<leader>ms", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", desc = "View document symbols", mode = "n" },
+			{ "<leader>xs", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", desc = "View document symbols", mode = "n" },
 			{
-				"<leader>mS",
+				"<leader>xS",
 				"<cmd>Telescope symbols<CR>",
 				desc = "View workspace symbols",
 				mode = "n",
 			},
-			{ "<leader>me", "<cmd>lua vim.diagnostic.open_float()<CR>", desc = "Show Diagnostics (float)", mode = "n" },
-			{ "<leader>mR", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to References", mode = "n" },
-			{ "<leader>mH", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help", mode = "n" },
+			{ "<leader>xe", "<cmd>lua vim.diagnostic.open_float()<CR>", desc = "Show Diagnostics (float)", mode = "n" },
+			{ "<leader>xR", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to References", mode = "n" },
+			{ "<leader>xH", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help", mode = "n" },
 			-- { "<leader>m", group = "Diagnostics" },
 			-- { "<leader>mD", desc = "View declaration" },
 			-- { "<leader>mR", desc = "Refrences" },
@@ -99,9 +101,9 @@ return {
 			-- { "<leader>mi", desc = "Go to implementation" },
 			-- { "<leader>mq", desc = "Diagnostic error list" },
 			-- { "<leader>mr", desc = "Rename" },
-			{ "<leader>mwa", desc = "Add workspace folder" },
-			{ "<leader>mwl", desc = "List workspace folders" },
-			{ "<leader>mwr", desc = "Remove workspace folder" },
+			{ "<leader>xwa", desc = "Add workspace folder" },
+			{ "<leader>xwl", desc = "List workspace folders" },
+			{ "<leader>xwr", desc = "Remove workspace folder" },
 
 			-- Tab navigations
 			{ "<leader>t", group = "Tab navigation" },
@@ -123,9 +125,6 @@ return {
 			{ "<leader>db", desc = "Toggle breakpoint" },
 			{ "<leader>de", desc = "Check value" },
 			{ "<leader>ds", desc = "Watches" },
-
-			{ "<leader>M", "<cmd>messages<cr>", desc = "View lastest messages" },
-			{ "<leader>T", "<cmd>Telescope treesitter<cr>", desc = "View Tree sitter" },
 
 			-- Lazy git
 			{ "<leader>g", group = "Git" },
