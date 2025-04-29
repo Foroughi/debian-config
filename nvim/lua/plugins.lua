@@ -7,10 +7,11 @@ local plugins = {
 	--require("plugin-catppuccin"),
 
 	--Editor
-	--require("plugin-gitsign"),
+	require("plugin-gitsign"),
 	--require("plugin-bufferline"),
 	require("plugin-indent"),
 	require("plugin-formatter"),
+	require("plugin-surround"),
 	--Tools
 	require("plugin-notify"),
 	require("plugin-lualine"),
@@ -20,7 +21,7 @@ local plugins = {
 	require("plugin-copilot"),
 	--require("plugin-dev-container"),
 	require("plugin-which-key"),
-	--require("plugin-terminal"),
+	-- --require("plugin-terminal"),
 	require("plugin-mason"),
 	--require("plugin-tasks"),
 	--require("plugin-telescope-file-browser"),
@@ -31,7 +32,7 @@ local plugins = {
 	require("plugin-treesitter"),
 	--require("plugin-trouble"),
 	require("plugin-dap"),
-	--require("plugin-dap-ui"),
+	require("plugin-dap-ui"),
 }
 
 local getPlugins = function()

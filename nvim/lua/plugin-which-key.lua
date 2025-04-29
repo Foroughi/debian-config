@@ -5,7 +5,7 @@ return {
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
-			vim.o.timeoutlen = 0
+			vim.o.timeoutlen = 300
 		end,
 		config = true,
 		opts = {
@@ -27,9 +27,24 @@ return {
 				spacing = 0, -- spacing between columns
 				align = "center", -- align columns left, center or right
 			},
-			filter = function(mapping)
+			filter = function(mode, keys)
 				return true
 			end,
+			plugins = {
+				marks = true, -- shows a list of your marks on ' and `
+				registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+				-- the presets plugin, adds help for a bunch of default keybindings in Neovim
+				-- No actual key bindings are created
+				presets = {
+					operators = true, -- adds help for operators like d, y, ...
+					motions = trutrue, -- adds help for motions
+					text_objects = true, -- help for text objects triggered after entering an operator
+					windows = true, -- default bindings on <c-w>
+					nav = true, -- misc bindings to work with windows
+					z = true, -- bindings for folds, spelling and others prefixed with z
+					g = true, -- bindings for prefixed with g
+				},
+			},
 		},
 	},
 	setup = function()
@@ -112,10 +127,6 @@ return {
 			{ "<leader>tl", "<cmd>tabnext<cr>", desc = "Move to next tab" },
 			{ "<leader>tn", "<cmd>tabnew<cr>", desc = "New tab" },
 			{ "<leader>tq", "<cmd>q<cr>", desc = "Close current tab" },
-
-			-- Clipboard
-			{ "<leader>p", desc = "Paste from system clipboard" },
-			{ "<leader>y", desc = "Copy to system clipboard" },
 
 			-- Debug
 			{ "<leader>d", group = "Debug mode" },

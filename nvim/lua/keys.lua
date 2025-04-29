@@ -1,8 +1,16 @@
 vim.g.mapleader = " "
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true, desc = "which_key_ignore" }
+--local opts = { noremap = true, silent = true }
+--vim.keymap.del("n", "s")
+--vim.keymap.set({ "c", "v", "i" }, "<C-s>", "<cmd>:write<cr>")
 
-vim.keymap.set({ "c", "v", "i" }, "<C-s>", "<cmd>:write<cr>")
+-- vim.keymap.set({ "n", "v" }, "s", "s", opts) -- Disable default 's'
 
+vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]], opts)
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], opts)
+
+vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]], opts)
+vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]], opts)
 -- to get used to vim key layout
 --vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Up>', '<Nop>', opts)
 --vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<Down>', '<Nop>', opts)
@@ -42,4 +50,4 @@ vim.keymap.set({ "c", "v", "i" }, "<C-s>", "<cmd>:write<cr>")
 --vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Insert>', '<Nop>', opts)
 --vim.keymap.set({'n', 'v' , 'c' , 'i'}, '<s-Delete>', '<Nop>', opts)
 
-vim.keymap.set({ "n", "v", "c", "i" }, "<Esc><Esc>", ":noh<CR>", opts)
+vim.keymap.set({ "n" }, "<Esc><Esc>", ":noh<CR>", opts)

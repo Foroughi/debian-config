@@ -26,6 +26,5 @@ opt.mouse = ""
 opt.splitright = true
 opt.wrap = false
 
-vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.opt.background = "dark"
+vim.o.timeoutlen = 300
