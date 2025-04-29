@@ -27,7 +27,7 @@ return {
 				spacing = 0, -- spacing between columns
 				align = "center", -- align columns left, center or right
 			},
-			filter = function(mode, keys)
+			filter = function(mapping)
 				return true
 			end,
 			plugins = {
@@ -37,7 +37,7 @@ return {
 				-- No actual key bindings are created
 				presets = {
 					operators = true, -- adds help for operators like d, y, ...
-					motions = trutrue, -- adds help for motions
+					motions = true, -- adds help for motions
 					text_objects = true, -- help for text objects triggered after entering an operator
 					windows = true, -- default bindings on <c-w>
 					nav = true, -- misc bindings to work with windows
