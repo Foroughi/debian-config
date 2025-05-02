@@ -83,8 +83,8 @@ getCamelCase() {
 }
 
 setPS1(){
-    t=2;
-    text="\n "
+    t=0;
+    text="\n"
     # text=""
 
     # Draw user
@@ -133,7 +133,7 @@ setPS1(){
     fi
 
     # Draw Ending
-    text+="\n  ➔ "
+    text+="\n ➔ "
 
     # Draw Spaces
     local spaces=""
@@ -144,7 +144,7 @@ setPS1(){
 
 
     PS1="${text//###/$spaces}"
-    PS2="  ➔ "
+    PS2=" ➔ "
 }
 
 # bind "set vi-cmd-mode-string "\1\e[34;1m\2CMD\1\e[0m\2""
