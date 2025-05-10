@@ -7,7 +7,7 @@ local plugins = {
 	--require("plugin-catppuccin"),
 
 	--Editor
-	require("plugin-gitsign"),
+	-- require("plugin-gitsign"),
 	--require("plugin-bufferline"),
 	require("plugin-indent"),
 	require("plugin-formatter"),
