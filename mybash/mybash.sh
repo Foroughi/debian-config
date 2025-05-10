@@ -19,6 +19,31 @@ wrapTextWithColor() {
     echo "\[$color_seq\]$text\[$(tput sgr0)\]"
 }
 
+wrapTextWithHexColor() {
+    local text="$1"
+    local fg_hex="$2" # e.g., "#ffaa00"
+    local bg_hex="$3" # e.g., "#001122"
+    local fg_seq=""
+    local bg_seq=""
+
+    # Convert hex to RGB
+    if [[ "$fg_hex" =~ ^#([a-fA-F0-9]{6})$ ]]; then
+        r=$((16#${fg_hex:1:2}))
+        g=$((16#${fg_hex:3:2}))
+        b=$((16#${fg_hex:5:2}))
+        fg_seq="\[\e[38;2;${r};${g};${b}m\]"
+    fi
+
+    if [[ "$bg_hex" =~ ^#([a-fA-F0-9]{6})$ ]]; then
+        r=$((16#${bg_hex:1:2}))
+        g=$((16#${bg_hex:3:2}))
+        b=$((16#${bg_hex:5:2}))
+        bg_seq="\[\e[48;2;${r};${g};${b}m\]"
+    fi
+
+    echo "${fg_seq}${bg_seq}${text}\[\e[0m\]"
+}
+
 wrapTextWithColor2() {
     echo '\[$(tput setab ' $3 ')\]\[$(tput setaf ' $2 ')\]'$1'\[$(tput sgr0)\]'
 }
@@ -37,7 +62,7 @@ drawTag2() {
 
     [[ -n "$5" ]] && sep_bg=0
 
-    echo "$(wrapTextWithColor "\$(getTagStarter 1)" $bg $sep_bg)$(wrapTextWithColor "$icon " $fg $bg)$(wrapTextWithColor " $text " 15 237)"
+    echo "$(wrapTextWithColor "\$(getTagStarter 1)" $bg $sep_bg)$(wrapTextWithColor "$icon " $fg $bg)$(wrapTextWithHexColor " $text " "#b8c0dd" "#313244")"
 }
 
 getGitTag(){
