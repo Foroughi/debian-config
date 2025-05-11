@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+terminal="wezterm"
+
+mapfile -t sessions < <(tmux list-sessions -F "#S" 2>/dev/null || true)
+
+all=("new" "${sessions[@]}")
+declare -A labels
+declare -A actions
+declare -A icons
+
+icons[new]="\uf0fe"
+labels[new]="New session"
+actions[new]="$terminal start -- tmux new-session"
+
+for s in "${sessions[@]}"; do
+    icons[$s]="\uf120"
+    labels[$s]="$s"
+    actions[$s]="$terminal start -- tmux attach-session -t \"$s\""
+done
+
+if [ $# -eq 0 ]; then
+    echo -e "\0prompt\x1fTmux sessions"
+    echo -e "\0markup-rows\x1ftrue"
+    echo -e "\0no-custom\x1ftrue"
+    for s in "${all[@]}"; do
+        echo -e "<span font_size=\"medium\">${icons[$s]}</span> <span font_size=\"medium\">${labels[$s]}</span>\0icon\x1f${icons[$s]}"
+    done
+    exit 0
+fi
+
+selected="$*"
+for s in "${all[@]}"; do
+    if [[ "$selected" == *"${labels[$s]}"* ]]; then
+        eval "nohup ${actions[$s]}"
+        exit 0
+    fi
+done
+
+echo "Invalid selection: $selected" >&2
+exit 1
