@@ -12,12 +12,12 @@ declare -A icons
 
 icons[new]="\uf0fe"
 labels[new]="New session"
-actions[new]="$terminal start -- tmux new-session"
+actions[new]="setsid nohup $terminal start -- tmux new-session >/dev/null 2>&1 &"
 
 for s in "${sessions[@]}"; do
     icons[$s]="\uf120"
     labels[$s]="$s"
-    actions[$s]="$terminal start -- tmux attach-session -t \"$s\""
+    actions[$s]="setsid nohup $terminal start -- tmux attach-session -t \"$s\" >/dev/null 2>&1 &"
 done
 
 if [ $# -eq 0 ]; then

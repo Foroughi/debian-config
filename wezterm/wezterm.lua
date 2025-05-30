@@ -1,7 +1,6 @@
 local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
-
 -- This is where you actually apply your config choices
 
 config.font = wezterm.font("CaskaydiaMono NF")
@@ -15,4 +14,5 @@ config.window_padding = {
 	bottom = "7px",
 }
 config.key_tables = {}
+
 return config
