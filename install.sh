@@ -37,7 +37,7 @@ Sound() {
 
 Misc() {
 
-    sudo apt install -y   xclip rofi  picom nitrogen kitty polybar dunst conky scrot
+    sudo apt install -y  i3  xclip rofi  picom nitrogen  polybar dunst conky scrot xsecurelock
 
 }
 
@@ -52,6 +52,16 @@ CmdTools() {
 
 }
 
+Apt() {
+
+
+    sudo cp ./source-lists/* /etc/apt/source-list.d/
+    sudo apt update
+
+}
+
+
+
 Nvidia() {
 
     sudo apt install -y software-properties-common
@@ -61,8 +71,6 @@ Nvidia() {
     sudo apt install -y nvidia-driver
 
 }
-
-
 
 Directories() {
 
@@ -491,6 +499,9 @@ check() {
     else
         statuses+=(" ")
     fi
+
+    #Apt
+    statuses+=(" ")
 }
 
 
@@ -528,6 +539,7 @@ modules=(
     Lazygit
     Lazydocker
     WezTerm
+    Apt
 )
 
 descriptions=(
@@ -558,6 +570,7 @@ descriptions=(
     "Install Lazygit"
     "Install Lazydocker"
     "Install Wezterm"
+    "Cope Apt source lists"
 )
 
 count=${#modules[@]}
