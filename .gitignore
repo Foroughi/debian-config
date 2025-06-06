@@ -1,4 +1,5 @@
 google-chrome/**
+google-chrome-unstable/**
 dconf/**
 menus/**
 #mimeapps.list
