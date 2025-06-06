@@ -6,6 +6,8 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id picom -b
 exec --no-startup-id polybar tgwm1
 exec --no-startup-id polybar tgwm2
+
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3blocks
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -21,7 +23,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 bindsym $mod+Return exec rofi -show tmux-menu -modi tmux-menu:\"~/.config/rofi/rofi-tmux-menu\" -config ~/.config/rofi/config.rasi
-bindsym $mod+Esc kill
+bindsym $mod+Escape kill
 bindsym $mod+Pause exec rofi -show power-menu -modi power-menu:\"~/.config/rofi/rofi-power-menu\" -config ~/.config/rofi/config.rasi
 bindsym $mod+grave exec rofi -no-lazy-grab -show drun -config ~/.config/rofi/config.rasi
 bindsym $mod+Tab exec rofi -no-lazy-grab -show window -config ~/.config/rofi/config.rasi
